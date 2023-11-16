@@ -3,14 +3,14 @@
 namespace Database\Seeders;
 
 use App\Models\Allergy;
-use App\Models\Customer;
+use App\Models\Element;
 use App\Models\Goal;
 use App\Models\Productivity;
 use App\Models\Type;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class CustomerTabelSeeder extends Seeder
+class ElementSeederTabel extends Seeder
 {
     /**
      * Run the database seeds.
@@ -19,7 +19,7 @@ class CustomerTabelSeeder extends Seeder
      */
     public function run()
     {
-        Customer::factory(10)->create();
-        
+        //Element::factory(10)->create();
+       
     }
 }

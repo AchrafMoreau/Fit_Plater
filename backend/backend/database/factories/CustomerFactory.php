@@ -3,7 +3,10 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-
+use App\Models\Goal;
+use App\Models\Allergy;
+use App\Models\Productivity;
+use App\Models\Type;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
  */
@@ -16,20 +19,22 @@ class CustomerFactory extends Factory
      */
     public function definition()
     {
+
         return [
-            "first_name" => $this->faker->sentence(),
-            "last_name" => $this->faker->sentence(),
-            "email" => $this->faker->sentence(),
+            "first_name" => $this->faker->firstName(),
+            "last_name" => $this->faker->lastName(),
+            "email" => $this->faker->email(),
             "age" => $this->faker->numberBetween(10, 100),
             "wight" => $this->faker->numberBetween(20, 500),
-            "gender" => $this->faker->sentence(),
+            "gender" => fake()->title(),
+            "password" => fake()->sentence(),
             "phone" => $this->faker->sentence(),
-            "goal" => $this->faker->sentence(),
-            "typeGym" => $this->faker->sentence(),
-            "activityLevel" => $this->faker->sentence(),
+            "goal_id" => Goal::inRandomOrder()->first()->id,
+            "type_id" => Type::inRandomOrder()->first()->id,
+            "productivity_id" => Productivity::inRandomOrder()->first()->id,
             "MusclePercentage" => $this->faker->numberBetween(0, 100),
             "FatPercentage" => $this->faker->numberBetween(0, 100),
-            "allergies" => $this->faker->sentence(),
+            "allergy_id" => Allergy::inRandomOrder()->first()->id,
         ];
     }
 }
