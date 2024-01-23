@@ -45,15 +45,11 @@ return new class extends Migration
             $tabel->string('gender');
             $tabel->string('phone');
             $tabel->string('password');
-           // $tabel->unsignedBigInteger('goal_id');
             $tabel->foreignId('goal_id')->constrained()->onDelete('cascade');
-            //$tabel->unsignedBigInteger('SportType_id');
             $tabel->foreignId('type_id')->constrained()->onDelete('cascade');
-            //$tabel->unsignedBigInteger('productivity_id');
             $tabel->foreignId('productivity_id')->constrained()->onDelete('cascade');
             $tabel->integer('FatPercentage');
             $tabel->integer('MusclePercentage');
-            //$tabel->unsignedBigInteger('allergy_id');
             $tabel->foreignId('allergy_id')->constrained()->onDelete('cascade');
             $tabel->timestamps();
         });
@@ -76,8 +72,7 @@ return new class extends Migration
 
         Schema::create('meals', function(Blueprint $tabel){
             $tabel->id('id');
-            $tabel->unsignedBigInteger('element_id');
-            $tabel->foreign('element_id')->references('id')->on('elements');
+            $tabel->foreignId('element_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $tabel->integer('total_calories');
             $tabel->integer('total_carbohydate');
             $tabel->integer('total_fat');

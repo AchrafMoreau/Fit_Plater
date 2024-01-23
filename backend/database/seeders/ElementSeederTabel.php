@@ -19,7 +19,6 @@ class ElementSeederTabel extends Seeder
      */
     public function run()
     {
-        //Element::factory(10)->create();
-       
+       Element::factory(10)->create();
     }
 }

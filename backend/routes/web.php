@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Controller;
+use App\Http\Controllers\TestMeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,3 +24,6 @@ Route::get('/', function () {
 Route::get("/test", function(){
     return 'All good';
 });
+
+Route::get('/allo', [TestMeController::class, 'index']);
+
