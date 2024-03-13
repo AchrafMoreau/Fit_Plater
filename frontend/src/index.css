@@ -1,0 +1,28 @@
+/* src/styles/index.css */
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* Your custom styles go here */
+@media (max-width: 800px) {
+    .btn-phone {
+      @apply w-full mr-0 mb-2;
+    }
+    .btn-phone-forget {
+      @apply w-full mr-0 mb-2 text-xs;
+    }
+}
+
+/* html {
+  scroll-behavior: smooth;
+} */
+
+/* @layer components {
+  * {
+    @apply scroll-smooth
+  }
+} */
+
+/* .scroll-smooth {
+  scroll-behavior: smooth;
+} */

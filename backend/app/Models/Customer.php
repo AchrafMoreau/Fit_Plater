@@ -8,16 +8,21 @@ use App\Models\Goal;
 use App\Models\Type;
 use App\Models\Allergy;
 use App\Models\Productivity;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 
-class Customer extends Model
+class Customer extends Authenticatable
 {
-    use HasFactory;
+    use HasApiTokens, HasFactory, Notifiable;
+
+    protected $fillable = ["first_name","last_name","email","password","age","gender","weight", "height","phone","allergy_id","productivity_id","type_id","goal_id","MusclePercentage","FatPercentage"];
+
 
     public function Goals(){
         return $this->hasMany(Goal::class);
     }
-
     public function Type(){
         return $this->hasMany(Type::class);
     }

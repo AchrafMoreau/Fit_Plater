@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\TestMeController;
+use App\Http\Controllers\ElementController;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +26,9 @@ Route::get('/', function () {
 Route::get("/test", function(){
     return 'All good';
 });
+
+// Route::get("/element", [ElementController::class, "index"]);
+// Route::get("/element/{id}", [ElementController::class, "getById"]);
 
 Route::get('/allo', [TestMeController::class, 'index']);
 

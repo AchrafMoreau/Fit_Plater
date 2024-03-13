@@ -38,19 +38,20 @@ return new class extends Migration
         Schema::create('customers', function(Blueprint $tabel){
             $tabel->id('id');
             $tabel->string('first_name');
-            $tabel->string('last_name');
-            $tabel->string('email')->uniqid();
-            $tabel->integer('age');
-            $tabel->integer('wight');
-            $tabel->string('gender');
-            $tabel->string('phone');
+            $tabel->string('last_name')->nullable();
+            $tabel->string('email')->unique();
+            $tabel->integer('age')->nullable();
+            $tabel->integer('weight')->nullable();
+            $tabel->integer('height')->nullable();
+            $tabel->string('gender')->nullable();
+            $tabel->string('phone')->nullable();
             $tabel->string('password');
-            $tabel->foreignId('goal_id')->constrained()->onDelete('cascade');
-            $tabel->foreignId('type_id')->constrained()->onDelete('cascade');
-            $tabel->foreignId('productivity_id')->constrained()->onDelete('cascade');
-            $tabel->integer('FatPercentage');
-            $tabel->integer('MusclePercentage');
-            $tabel->foreignId('allergy_id')->constrained()->onDelete('cascade');
+            $tabel->foreignId('goal_id')->nullable()->constrained()->onDelete('cascade');
+            $tabel->foreignId('type_id')->nullable()->constrained()->onDelete('cascade');
+            $tabel->foreignId('productivity_id')->nullable()->constrained()->onDelete('cascade');
+            $tabel->integer('FatPercentage')->nullable();
+            $tabel->integer('MusclePercentage')->nullable();
+            $tabel->foreignId('allergy_id')->nullable()->constrained()->onDelete('cascade');
             $tabel->timestamps();
         });
 
@@ -101,10 +102,10 @@ return new class extends Migration
     public function down()
     {
         Schema::dropIfExists('customer');
+        Schema::dropIfExists('productivities');
         Schema::dropIfExists('orders');
         Schema::dropIfExists('meals');
         Schema::dropIfExists('elements');
-        Schema::dropIfExists('productivities');
         Schema::dropIfExists('goals');
         Schema::dropIfExists('types');
         Schema::dropIfExists('allergies');
