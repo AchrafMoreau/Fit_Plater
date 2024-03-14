@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+
 
 class CustomerController extends Controller
 {
@@ -26,8 +28,8 @@ class CustomerController extends Controller
             "password" => "required|string|confirmed",
             "age" => "numeric",
             "gender" => "string",
-            // "height" => "numeric", ...need to add after
-            "wight" => "numeric", // it's weight not wight(in db)
+            "height" => "numeric", 
+            "wight" => "numeric", 
             "phone" => "string",
             "allergy_id" => "numeric",
             "productivity_id" => "numeric",
@@ -37,25 +39,25 @@ class CustomerController extends Controller
             "FatPercentage" => 'numeric'
         ]);
 
-        // $customer = Customer::create([
-        //     "first_name" => $fildes['first_name'],
-        //     "last_name" => $fildes['last_name'],
-        //     "email" => $fildes['email'],
-        //     "password" => $fildes['password'],
-        //     "age" => $fildes['age'],
-        //     "gender" => $fildes['gender'],
-        //     // "height" => "number", ...need to add after
-        //     "wight" => $fildes['wight'], // it's weight not wight
-        //     "phone" => $fildes['phone'],
-        //     "allergy_id" => $fildes['allergy_id'],
-        //     "productivity_id" => $fildes['productivity_id'],
-        //     "type_id" => $fildes['type_id'],
-        //     "goal_id" => $fildes['goal_id'],
-        //     "MusclePercentage" => $fildes['MusclePercentage'],
-        //     "FatPercentage" => $fildes['FatPercentage']
-        // ]);
+        $customer = Customer::create([
+            "first_name" => $fildes['first_name'],
+            "last_name" => $fildes['last_name'] ?? null,
+            "email" => $fildes['email'],
+            "password" => bcrypt($fildes['password']),
+            "age" => $fildes['age'] ?? null,
+            "gender" => $fildes['gender'] ?? null,
+            "height" => $fildes["number"] ?? null, 
+            "weight" => $fildes['weight'] ?? null, 
+            "phone" => $fildes['phone'] ?? null,
+            "allergy_id" => $fildes['allergy_id'] ?? null,
+            "productivity_id" => $fildes['productivity_id'] ?? null,
+            "type_id" => $fildes['type_id'] ?? null,
+            "goal_id" => $fildes['goal_id'] ?? null,
+            "MusclePercentage" => $fildes['MusclePercentage'] ?? null,
+            "FatPercentage" => $fildes['FatPercentage'] ?? null
+        ]);
 
-        $customer = Customer::create($req->all());
+        // $customer = Customer::create($req->all());
         $token = $customer->createToken('MyTokenApp')->plainTextToken;
 
         $response = [
@@ -70,19 +72,32 @@ class CustomerController extends Controller
     public function login(Request $req)
     {
         $fildes = $req->validate([
-            'first_name' => 'string|required',
             'email' => 'string|required',
             'password' => 'string|required',
         ]);
 
-        $customer = Customer::create($req->all());
-        $token = $customer->createToken("myapptoken")->plainTextToken;
+        $customer = Customer::where("email", $fildes['email'])->first();
 
+        if(!$customer || !Hash::check($fildes['password'], $customer->password)){
+            return response([
+                'message' => "Bad Creds",
+            ], 401);
+        }
+
+        $token = $customer->createToken('MyTokenApp')->plainTextToken;
         $res = [
             'customer'=> $customer,
             'token'=> $token
         ];
         return response($res);
+    }
+
+    public function logout(Request $req)
+    {
+        auth()->user()->token()->delete();
+        return [
+            "message" => "Logged out"
+        ];
     }
 
 }

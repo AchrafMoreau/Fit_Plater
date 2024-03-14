@@ -19,8 +19,10 @@ use App\Http\Controllers\CustomerController;
 // Public Routes
 Route::get("element", [ElementController::class, 'index']);
 Route::get("element/{element}", [ElementController::class, 'show']);
+
+// auth Routes-----
 Route::post("register", [CustomerController::class, 'register']);
-Route::post("test", [CustomerController::class, 'test']);
+Route::post("login", [CustomerController::class, 'login']);
 
 // Protected Routes
 Route::group(['middleware' => ['auth:sanctum']], function (){

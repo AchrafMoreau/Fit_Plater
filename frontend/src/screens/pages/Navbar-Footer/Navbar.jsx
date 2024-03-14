@@ -84,13 +84,13 @@ const Navbar = ({ setShowCart }) => {
                   >
                     <MdShoppingBasket className="text-textColor text-2xl hover:text-myBlue cursor-pointer transition-all duration-400" />
                 
-                    {cartList && cartList.length > 0 && (
+                    {/* {cartList && cartList.length > 0 && (
                       <div className="absolute -top-1 -right-2 w-4 h-4 rounded-full bg-myOrange flex items-center justify-center">
                         <p className="text-xs text-white font-semibold">
                           {cartList.length}
                         </p>
                       </div>
-                    )}
+                    )} */}
                   </div>
                   <button
                     onClick={handleLogout}

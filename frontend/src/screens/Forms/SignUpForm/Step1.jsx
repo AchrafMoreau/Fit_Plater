@@ -113,19 +113,7 @@ const Step1 = ({formData, handleInputChange}) => {
                 <p className="mt-1 text-xs text-red-500"></p>
               </div>
 
-              <div className="mb-2">
-                <label htmlFor="allergies" className="block mb-2 text-sm font-medium text-gray-700">Allergies</label>
-                <input
-                  type="text"
-                  id="allergies"
-                  name="allergies"
-                  value={formData.allergies || ''}
-                  onChange={handleInputChange}
-                  placeholder="Enter allergies"
-                  className="w-full px-3 py-2 bg-InputBg border border-InputBg rounded-md outline-none focus:border-[#FC6212]"
-                />
-                <p className="mt-1 text-xs text-red-500"></p>
-              </div>
+              
         </>
      );
 }
