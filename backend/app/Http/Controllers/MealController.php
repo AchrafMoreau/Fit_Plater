@@ -4,32 +4,117 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Meal;
-use App\Models\Elemenet;
-use App\Models\Customer;
+use App\Models\meals_element;
 
 class MealController extends Controller
 {
-    //
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
 
-    public function Recommendation(Request $req)
+    
+    public function index(Request $request)
     {
-        $user = Customer::find($req->id);
+        return  meals_element::with(['mealId', 'elementId'])->get();
         
-        $age = $user->age(); 
-        $height = $user->height();
-        $weight = $user->weight();
-        $fat = $user->fat();
-        $goad = $user->goal();
-        $type_of_sport = $user->type();
-        $musc = $user->musclePersentage();
-        $allergy = $user->allergy();
+    }
 
-        // some calculate of how can reache the goal 
-        // and give some how much hi need for fat, calories, protine
-        // finaly make some element that give as all we need
-        // return the meal
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+    }
 
-        
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        //
+        $fileds = $request->validate([
+            "total_calories" => 'numeric',
+            "total_carbohydate" =>"numeric",
+            "total_fat" => "numeric",
+            "total_protien" => "numeric",
+            "meal_price" => "numeric",
+            "elements" => "array"
+        ]);
+        // dd($fileds['elements']);
 
+        $meal = Meal::create([
+            "total_calories" => $fileds['total_calories'],
+            "total_carbohydate" => $fileds['total_carbohydate'],
+            "total_fat" => $fileds['total_fat'],
+            "total_protien" => $fileds['total_protien'],
+            "meal_price" => $fileds['meal_price']
+        ]);
+
+        foreach($fileds['elements'] as $elm)
+        {
+            $meal_element = meals_element::create([
+                "meal_id" => $meal->id,
+                "element_id" => $elm['element_id'],
+                "size" => $elm['size'],
+            ]);
+            // return ($elm['size']);
+        }
+        return [
+            "message" => "all good",
+            "data" => $meal_element
+        ];
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
     }
 }

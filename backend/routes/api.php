@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ElementController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\MealController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +35,8 @@ Route::group(['middleware' => ['auth:sanctum']], function (){
     Route::put("element/{element}", [ElementController::class, 'update']);
     Route::get("Recommendation", [MealCon::class, 'Recommendation']);
     Route::post("order", [OrderController::class, 'order']);    
+    Route::resource("meal", MealController::class);
+    // Route::post("meal", [MealController::class, 'store']);
 });
 
 // Route::resource("element", ElementController::class);
