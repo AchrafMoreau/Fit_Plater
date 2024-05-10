@@ -8,6 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Element extends Model
 {
     use HasFactory;
-    protected $fillable = ['name', "image","calories","protien","carbohydrates" ,"fat"];
+    protected $fillable = ['name', "image","calories","protien","carbohydrates" ,"fat", 'price', "measuredByGram"];
 
 }

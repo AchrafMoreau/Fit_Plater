@@ -67,19 +67,27 @@ return new class extends Migration
             $tabel->integer('protien');
             $tabel->integer('carbohydrates');
             $tabel->integer('fat');
+            $tabel->boolean('measuredByGram');
+            $tabel->decimal('price');
             $tabel->timestamps();
         });
 
 
         Schema::create('meals', function(Blueprint $tabel){
             $tabel->id('id');
-            $tabel->foreignId('element_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
+            // $tabel->foreignId('element_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $tabel->integer('total_calories');
             $tabel->integer('total_carbohydate');
             $tabel->integer('total_fat');
             $tabel->integer('total_protien');
             $tabel->decimal('meal_price');
             $tabel->timestamps();
+        });
+
+        Schema::create('meals_elements', function(Blueprint $tabel){
+            $tabel->foreignId('element_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
+            $tabel->foreignId('meal_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
+            $tabel->integer("size");
         });
 
         Schema::create('orders', function(Blueprint $tabel){

@@ -33,7 +33,9 @@ class ElementController extends Controller
             "calories" => "required",
             "protien" => "required",
             "carbohydrates" => "required",
-            "fat" => "required"
+            "fat" => "required",
+            "price" => "required",
+            'measuredByGram' => "required"
         ]);
         return Element::create($request->all());
     }
