@@ -88,6 +88,7 @@ return new class extends Migration
             $tabel->foreignId('element_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $tabel->foreignId('meal_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $tabel->integer("size");
+            $tabel->timestamps();
         });
 
         Schema::create('orders', function(Blueprint $tabel){

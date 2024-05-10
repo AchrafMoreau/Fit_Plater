@@ -20,12 +20,11 @@ class CustomerController extends Controller
     
     public function register(Request $req)
     {
-
         $fildes = $req->validate([
             "first_name" => 'required|string',
             "last_name" => 'string',
             "email" => "required|string|unique:customers,email",
-            "password" => "required|string|confirmed",
+            "password" => "required|string",
             "age" => "numeric",
             "gender" => "string",
             "height" => "numeric", 
@@ -61,8 +60,9 @@ class CustomerController extends Controller
         $token = $customer->createToken('MyTokenApp')->plainTextToken;
 
         $response = [
-            "customer" => $customer,
-            'token' => $token
+            // "customer" => $customer,
+            // 'token' => $token
+            "message" => "all good"
         ];
 
         return response($response, 201);
@@ -86,7 +86,7 @@ class CustomerController extends Controller
 
         $token = $customer->createToken('MyTokenApp')->plainTextToken;
         $res = [
-            'customer'=> $customer,
+            // 'customer'=> $customer,
             'token'=> $token
         ];
         return response($res);
