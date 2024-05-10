@@ -13,7 +13,7 @@ const Cart = ({ showCart, setShowCart }) => {
 
   return (
     <div
-      className={`fixed inset-0 z-20 ${showCart ? "bg-black bg-opacity-50" : "hidden"}`}
+      className={`fixed inset-0 z-50 ${showCart ? "bg-black bg-opacity-50" : "hidden"}`}
       onClick={() => setShowCart(false)}
     >
       <motion.div

@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { removeFromCart, addToCart } from "../../../redux/CartSlice";
 import EmptyCart from "../../../images/emptyCart.svg";
 import { Link } from "react-router-dom";
-import { IoIosArrowDropupCircle, IoIosArrowDropdownCircle  } from "react-icons/io";
 
 function ShoppingCart() {
   const { cartList, totalPrice } = useSelector((state) => state.Cart);
@@ -18,8 +17,8 @@ function ShoppingCart() {
   };
 
   return (
-      <div className="sm:flex min-h-screen pt-2 px-4 w-full">
-        <div className="w-full sm:w-3/4 bg-white px-10 py-10 ">
+      <div className="sm:flex h-screen pt-2 px-4 w-full">
+        <div className="w-full sm:w-3/4 bg-white px-10 py-10 h-screen overflow-auto ">
           <div className="flex justify-between border-b pb-8 ">
             <h1 className="font-Outfit text-2xl">Shopping Cart</h1>
             <h2 className="font-Outfit text-2xl">{cartList.length} Items</h2>
@@ -27,8 +26,8 @@ function ShoppingCart() {
 
           {cartList.length > 0 ? (
             cartList.map((meal) => (
-              <div className="md:flex items-stretch p4-4 py-8 md:py-10 lg:py-8 border-t border-gray-50" key={meal.id}>
-                <div className="md:w-4/12 2xl:w-1/4 w-full  ">
+              <div className="md:flex items-stretch py-8 md:py-10 lg:py-8 border-t border-gray-50" key={meal.id}>
+                <div className="md:w-4/12 2xl:w-1/4 w-full">
                   <img src={meal.image} alt={meal.category} className="h-full object-center object-cover md:block hidden rounded-lg" />
                   <img src={meal.image} alt={meal.category} className="md:hidden w-full h-full object-center object-cover rounded-lg" />
                 </div>
@@ -45,16 +44,16 @@ function ShoppingCart() {
                   </div>
                                     
                   <div className="gap-3 flex flex-col justify-between">
-                    <div class="flex items-center border-gray-100">
-                      <span onClick={() => handleRemoveFromCart(meal)} class="cursor-pointer rounded-l bg-gray-100 py-1 px-3.5 duration-100 hover:bg-myBlue hover:text-blue-50"> - </span>
-                      <input class="h-8 w-10 border bg-white text-center text-xs outline-none" type="number" value={meal.quantity} readOnly min="1" />
-                      <span onClick={() => handleAddToCart(meal)} class="cursor-pointer rounded-r bg-gray-100 py-1 px-3 duration-100 hover:bg-myBlue hover:text-blue-50"> + </span>
+                    <div className="flex items-center border-gray-100">
+                      <button onClick={() => handleRemoveFromCart(meal)} className="cursor-pointer rounded-l bg-gray-100 py-1 px-3 duration-100 hover:bg-blue-500 hover:text-white"> - </button>
+                      <input className="h-8 w-10 border border-gray-300 bg-white text-center text-sm outline-none mx-2" type="number" value={meal.quantity} readOnly min="1" />
+                      <button onClick={() => handleAddToCart(meal)} className="cursor-pointer rounded-r bg-gray-100 py-1 px-3 duration-100 hover:bg-blue-500 hover:text-white"> + </button>
                     </div>
                     <div className="flex justify-end">
-                      <p className="text-base font-black leading-none text-headersBlue  ">{meal.price.toFixed(2)} MAD</p>
+                      <p className="text-base font-black leading-none text-headersBlue  ">{meal.price} MAD</p>
                     </div>
                   </div>
-                
+              
                 </div>
               </div>
             ))
@@ -79,7 +78,7 @@ function ShoppingCart() {
           <h1 className="font-Outfit text-2xl border-b pb-8">Order Summary</h1>
           <div className="flex justify-between mt-10 mb-5">
             <span className="font-Outfit text-sm uppercase">Items {cartList.length}</span>
-            <span className="font-Outfit text-sm">{totalPrice.toFixed(2)} MAD</span>
+            <span className="font-Outfit text-sm">{totalPrice} MAD</span>
           </div>
           <div>
             <label className="font-Outfit inline-block mb-3 text-sm uppercase">Delivery</label>
@@ -90,7 +89,7 @@ function ShoppingCart() {
           <div className="border-t mt-8">
             <div className="flex font-Outfit justify-between py-6 text-sm uppercase">
               <span>Total cost</span>
-              <span>{(totalPrice + 10).toFixed(2)} MAD</span>
+              <span>{(totalPrice + 10)} MAD</span>
             </div>
             <button className="bg-myBlue font-Outfit hover:bg-myOrange py-3 text-sm text-white uppercase w-full duration-150">
               Checkout
