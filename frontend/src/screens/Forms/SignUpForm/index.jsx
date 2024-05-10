@@ -1,27 +1,15 @@
 import { ArrowRightIcon, ArrowLeftIcon } from '@heroicons/react/24/solid';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Step1 from './Step1';
 import Step2 from './Step2';
 import { Link, useNavigate } from 'react-router-dom';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../../firebase/Firebase';
-import axios from 'axios';
-import { useDispatch, useSelector } from 'react-redux';
-import { registerUser } from '../../../redux/features/authAction';
-
-
 
 export default function() {
   const [step, setStep] = useState(true);
   const [formData, setFormData] = useState({});
   const navigate = useNavigate();
-
-
-  const dispatch = useDispatch();
-
-  // useSelector for user registring 
-  const { loading, userInfo, error, success } = useSelector(state => state.auth);
-
 
 
   const handleNext = () => {
@@ -35,21 +23,25 @@ export default function() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(formData);
-    
-    dispatch(registerUser(formData))
-    if(success){
-      navigate("/sign-in")
-    }
+    // handle form submission
+    createUserWithEmailAndPassword(auth, formData.email, formData.password)
+    .then((userCredential) => {
+      console.log(userCredential)
+      // Redirect to the dashboard page after logging in
+      navigate('/home', { replace: true });
+      })
+    .catch((error) => {
+      console.log('Error: ', error);
+    });
   };
 
   return (
-    <div   className="flex items-center justify-center  bg-gray-40 " >    
-      <div className="w-3/5 px-10 pb-4  my-10  bg-wight border rounded-lg shadow-lg">
-        <div  className='flex flex-col	 items-center justify-center gap-4'>
+    <div className="flex items-center justify-center h-screen px-10 bg-gray-40 " >    
+      <div className="w-4/5 px-10 py-6 bg-white rounded-lg shadow-md">
+        <div className='flex flex-col	 items-center justify-center gap-4'>
         
         {/* Steppers */}
-        <div className='flex max-w-xs space-x-3 mt-10 self-center'>
+        <div className='flex max-w-xs space-x-3 self-center'>
           {step ? (
               <>
                 <span className="w-14 h-1 rounded-sm bg-myOrange"></span>
@@ -63,7 +55,7 @@ export default function() {
             )}
           </div>
 
-          <div className='self-start' >
+          <div className='self-start'>
             <h1 className="text-l font-small text-gray-500">
               {step ? 'Welcome to our community!' : 'Keep going..'}
             </h1>
@@ -73,7 +65,7 @@ export default function() {
           </div>
         </div>
         {/* form */}
-        <form  onSubmit={handleSubmit} className="mt-4 grid grid-cols-2 gap-4">
+        <form onSubmit={handleSubmit} className="mt-4 grid grid-cols-2 gap-4">
           {step ? (
             <>
               {/* Step 1 input fields */}

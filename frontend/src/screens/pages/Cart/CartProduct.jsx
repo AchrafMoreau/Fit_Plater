@@ -1,13 +1,13 @@
 // CartProduct.jsx
 import { FaTimes } from "react-icons/fa";
-// import { removeFromCart } from "../../../redux/CartSlice"; 
+import { removeFromCart } from "../../../redux/CartSlice"; 
 import { useDispatch } from "react-redux";
 
 const CartProduct = ({ el }) => {
   const dispatch = useDispatch();
 
   const handleRemove = () => {
-    // dispatch(removeFromCart(el));
+    dispatch(removeFromCart(el));
   };
 
   return (
@@ -19,7 +19,7 @@ const CartProduct = ({ el }) => {
           <p className="text-gray-600">{el.quantity} x {el.price} $</p>
         </div>
       </div>
-      <div onClick={handleRemove} className="cursor-pointer">
+      <div onClick={handleRemove} className="text-gray-400 hover:text-myBlue cursor-pointer">
         <FaTimes />
       </div>
     </div>

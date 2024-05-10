@@ -16,18 +16,18 @@ const Footer = () => {
             
             <nav className="flex flex-wrap justify-center -mx-5 -my-2">
                 <div className="px-5 py-2">
-                    <Link to='/about-us' className="text-base leading-6 text-gray-500 hover:text-myOrange">
-                        About
-                    </Link>
-                </div>
-                <div className="px-5 py-2">
                     <Link to='/home' className="text-base leading-6 text-gray-500 hover:text-myOrange">
                         Home
                     </Link>
                 </div>
                 <div className="px-5 py-2">
                     <Link to='/about-us' className="text-base leading-6 text-gray-500 hover:text-myOrange">
-                        Team
+                        About
+                    </Link>
+                </div>
+                <div className="px-5 py-2">
+                    <Link to='/custom' className="text-base leading-6 text-gray-500 hover:text-myOrange">
+                        Custom
                     </Link>
                 </div>
                 <div className="px-5 py-2">

@@ -1,85 +1,79 @@
+import React, { useState } from "react";
 import { BiSolidCartAdd } from "react-icons/bi";
-// import { addToCart } from "../../../../redux/CartSlice";
+import { addToCart } from "../../../../redux/CartSlice";
 import { useDispatch } from "react-redux";
+import { motion } from "framer-motion";
+import { MdFileDownloadDone } from "react-icons/md";
+
 
 const FoodItem = ({ item, setSelectedItem, setShowDetail }) => {
+  const dispatch = useDispatch();
+  const [showNotification, setShowNotification] = useState(false);
 
-    const  dispatch = useDispatch();
-    
-    const handleAdd = (item) => {
-        // dispatch(addToCart(item))
-    }
-    
-    return (
+  const handleAdd = (item) => {
+    dispatch(addToCart(item));
+    setShowNotification(true);
+
+    // Hide the notification after a delay (e.g., 3 seconds)
+    setTimeout(() => {
+      setShowNotification(false);
+    }, 3000);
+  };
+
+  return (
+    <div
+      onClick={() => {
+        setSelectedItem(item);
+        setShowDetail(true);
+      }}
+      className="card card-compact cursor-pointer w-64 lg:w-80 bg-white hover:shadow-lg shadow-md"
+    >
+      <figure>
+        <img className="hover:scale-105 duration-300" src={item.image} alt={item.category} />
+      </figure>
+      <div className="card-body text-myBlue">
+        <h2 className="card-title ">{item.category}</h2>
+        <p>
+          {item.calories} calories, {item.protein} g protein, {item.carbs} g carbs, {item.fat} g fat
+        </p>
         <div
-            onClick={() => {
-                setSelectedItem(item)
-                setShowDetail(true)
-            }} 
-            className="card card-compact cursor-pointer w-64 lg:w-80 bg-white hover:shadow-lg shadow-md"
+          onClick={(e) => e.stopPropagation()}
+          className="card-actions py-3 justify-between items-center"
         >
-            <figure>
-                <img className="hover:scale-105 duration-300" src={item.image} alt={item.category} />
-            </figure>
-            <div className="card-body text-myBlue">
-                <h2 className="card-title ">{item.category}</h2>
-                <p>{item.calories} calories, {item.protein} g protein, {item.carbs} g carbs, {item.fat} g fat</p>
-                <div
-                    onClick={(e) => e.stopPropagation()} 
-                    className="card-actions py-3 justify-between items-center"
-                >
-                    <p             
-                        onClick={() => {
-                            setSelectedItem(item)
-                            setShowDetail(true)
-                        }}  
-                        className=" text-myOrange font-Poppins text-sm font-semibold underline">
-                        View Detail
-                    </p>
-                    <span 
-                        className="mr-2 hover:text-myOrange active:scale-95 hover:scale-105 duration-100"
-                        onClick={() => handleAdd(item)}
-                    >
-                            <BiSolidCartAdd size={30}/>
-                    </span>
-                </div>
-            </div>
+          <p
+            onClick={() => {
+              setSelectedItem(item);
+              setShowDetail(true);
+            }}
+            className=" text-myOrange font-Poppins text-sm font-semibold underline"
+          >
+            View Detail
+          </p>
+          <span
+            className="mr-2 hover:text-myOrange active:scale-95 hover:scale-105 duration-100"
+            onClick={() => handleAdd(item)}
+          >
+            <BiSolidCartAdd size={30} />
+          </span>
         </div>
-    );
+      </div>
+
+      {/* Notification */}
+      {showNotification && (
+        <motion.div 
+            className="flex justify-center z-40 fixed top-20 right-0 w-full h-4"
+            initial={{opacity: 0, y: -10}}
+            animate={{opacity: 1, y: 0}}
+            transition={{duration: .2, ease: [.64,.04,.08, .98]}}
+        >
+          <div className="p-2 w-64 py-5 bg-myOrange items-center text-white leading-none rounded-full flex justify-between " role="alert">
+            <MdFileDownloadDone className="ml-2 mr-2" size={20} />
+            <span className="font-semibol font-Poppins mr-2 text-left flex-auto ">Added to cart successfully!</span>
+          </div>
+        </motion.div>
+      )}
+    </div>
+  );
 };
 
 export default FoodItem;
-
-
-
-
-{/* <a */}
-// href="#"
-// className="mx-auto flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:shadow-xl transition-all duration-400"        >
-// <img
-// src={item.image}
-// alt={item.category}
-// className="object-cover bg-cover w-96 rounded-t-lg h-64 md:h-64 md:w-48 md:rounded-none md:rounded-l-lg"
-// />
-// <div className="flex flex-col justify-between p-4 leading-normal">
-//     <h5 className="mb-2 text-2xl font-bold tracking-tight text-headersBlue">
-//         {item.category}
-//     </h5>
-//     <p className="mb-3 font-normal text-gray-700">
-//         {item.calories} calories, {item.protein} g protein, {item.carbs} g
-//         carbs, {item.fat} g fat
-//     </p>
-//     <ul>
-//         {item.ingredients.map((item, index) => (
-//         <li key={index} className="text-base text-myBlue">
-//             - {item}
-//         </li>
-//         ))}
-//     </ul>
-//     <div className="flex items-center justify-left mt-4">
-//         <button className="px-4 py-2 font-Outfit text-white bg-myOrange rounded-full hover:bg-orange-600">
-//         Order Now
-//         </button>
-//     </div>
-// </div>
-// </a>

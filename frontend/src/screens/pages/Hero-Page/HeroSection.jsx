@@ -1,6 +1,6 @@
 import { FaCircleRight } from "react-icons/fa6";
 import { motion } from 'framer-motion';
-import img from '../../../images/hero.jpeg';
+import img from '../../../images/hero.webp';
 import { Link } from "react-router-dom";
 
 const HeroSection = () => {
@@ -16,9 +16,9 @@ const HeroSection = () => {
       >
         <motion.div 
           animate={{ x: 0, opacity: 100 }} 
-          initial={{ x: -200, opacity: 0 }} 
+          initial={{ x: -10, opacity: 0 }} 
           transition={{ delay: 0.3 }}
-          className="container mx-auto text-left ml-[10%]"
+          className="mx-auto text-left ml-[10%]"
         >
           <h1 className="md:text-5xl text-3xl font-medium mb-6 text-headersBlue">Embrace a healthier lifestyle</h1>
           <p className="md:text-xl text-l mb-12 text-myBlue"> Uplifting Lives Through the Path of Wellness and Vitality.</p>

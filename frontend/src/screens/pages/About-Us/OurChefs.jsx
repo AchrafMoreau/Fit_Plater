@@ -28,15 +28,15 @@ const OurChefs = () => {
         <h3 className="font-Outfit text-2xl mb-4 text-headersBlue font-semibold">
           Our Chefs Experts
         </h3>
-        <div className="flex flex-col md:flex-row lg:gap-10 md:gap-4 gap-4 transition-all duration-300">
+        <div className="flex flex-col md:flex-row lg:gap-10 md:gap-4 gap-4 transition-all duration-300 flex-wrap justify-center mt-6">
         {chefs ? 
         (chefs.map((item, index) => (
         
           <div 
-            className="relative flex flex-col bg-white shadow-md bg-clip-border rounded-xl lg:w-80 w-64 "
+            className="relative flex flex-col bg-white shadow-md bg-clip-border rounded-lg lg:w-80 w-64 "
             key={index}
           >
-            <div className="relative mx-4 mt-4 overflow-hidden shadow-lg bg-clip-border rounded-xl lg:h-64 h-48">
+            <div className="relative overflow-hidden bg-clip-border rounded-lg lg:h-64 h-48">
                 <img className="hover:scale-105 transition duration-500 cursor-pointer" src={item.img} alt={item.name && 'A chef!'} />
             </div>
             <div className="p-6 text-center">

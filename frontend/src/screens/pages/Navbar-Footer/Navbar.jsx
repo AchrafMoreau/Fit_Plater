@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 const Navbar = ({ setShowCart }) => {
   const [isSticky, setIsSticky] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  // const { cartList } = useSelector((state) => state.Cart);
+  const { cartList } = useSelector((state) => state.Cart);
   const user = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : null;
   const navigate = useNavigate();
 
@@ -40,7 +40,7 @@ const Navbar = ({ setShowCart }) => {
   return (
     <div className="flex justify-center h-20">
       <div
-        className={`border-5 border-green w-5/6 mx-auto ${
+        className={`border-5 border-green w-5/6 mx-auto z-50 ${
           isSticky ? 'shadow-lg py-2' : 'py-5 '
         } rounded-lg transition-all duration-300 bg-white fixed top-0 z-10 items-center px-[4%] duration-400`}
       >
@@ -82,15 +82,15 @@ const Navbar = ({ setShowCart }) => {
                     className="relative flex items-center justify-center py-2 mr-3 active:scale-95"
                     onClick={() => setShowCart(true)}
                   >
-                    <MdShoppingBasket className="text-textColor text-2xl hover:text-myBlue cursor-pointer transition-all duration-400" />
+                    <MdShoppingBasket className="text-textColor text-gray-400 text-2xl hover:text-myBlue cursor-pointer transition-all duration-400" />
                 
-                    {/* {cartList && cartList.length > 0 && (
+                    {cartList && cartList.length > 0 && (
                       <div className="absolute -top-1 -right-2 w-4 h-4 rounded-full bg-myOrange flex items-center justify-center">
                         <p className="text-xs text-white font-semibold">
                           {cartList.length}
                         </p>
                       </div>
-                    )} */}
+                    )}
                   </div>
                   <button
                     onClick={handleLogout}

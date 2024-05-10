@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './screens/pages/Navbar-Footer/Navbar';
 import HeroApp from './screens/pages/Hero-Page/HeroApp';
 import Footer from './screens/pages/Navbar-Footer/Footer';
@@ -15,7 +15,8 @@ import NotFound from './screens/pages/NotFound';
 import img from './images/logo.png';
 import ShowNF from './screens/pages/Navbar-Footer/ShowNF';
 import PrivateRoute from './Outil/PrivateRoutes';
-import Terms from './screens/pages/Navbar-Footer/Terms';
+import Terms from './screens/pages/Terms';
+import ShoppingCart from './screens/pages/Cart/shopping-cart';
 
 function App() {
   const [showCart, setShowCart] = useState(false);
@@ -24,7 +25,7 @@ function App() {
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
-    }, 1000);
+    }, 500);
   }, []);
 
   return (
@@ -54,6 +55,7 @@ function App() {
             } />
             <Route path="/about-us" element={<AboutUsApp />} />
             <Route path="/contact-us" element={<ContactUsApp />} />
+            <Route path="/shopping-cart" element={<ShoppingCart />} />
             <Route path="/terms" element={<Terms />} />
             <Route path="/sign-in" element={<SignInForm />} />
             <Route path="/sign-up" element={<SignUpForm />} />

@@ -25,10 +25,10 @@ const WhyUs = () => {
   return (
     <div className="w-full h-full lg:h-[450px] bg-white flex items-center justify-arround my-6 flex-col p-[5%] lg:px-[10%]">
       <motion.div 
-          initial={{ scaleZ: -100 , opacity: 0}}
-          whileInView={{ opacity: 1, scaleZ: 0}}
-          transition={{ delay: 0.4 }}
-        className="flex md:flex-row flex-col">
+          initial={{ y: 10 , scale: 0.99, opacity : 0}}
+          whileInView={{ y: 0 , scale: 1,  opacity : 1 }}
+          transition={{  duration: 0.3, delay: 0.2 }}
+          className="flex md:flex-row flex-col">
         <h3 className="font-Outfit text-2xl md:text-3xl text-myBlue max-w-[400px]">
           WHY CHOOSE US <br />FOR
           <span className="text-myOrange"> YOUR HEALTHY FOOD</span>
@@ -39,10 +39,9 @@ const WhyUs = () => {
       <div className="flex flex-col lg:flex-row lg:gap-6 gap-4 pt-10 px-[5%] ">
         {cardContent.map((item, index) => (
           <motion.div 
-            initial={{ scaleZ: -100 , opacity: 0}}
-            whileInView={{ opacity: 1, scaleZ: 0 }}
+            initial={{ y: 5, scaleZ: 0.99 , opacity : 0 }}
+            whileInView={{ y: 0 ,scaleZ: 1,  opacity : 1 }}
             transition={{ delay: 0.3 }}
-
             key={index}
             className={`flex flex-col md:flex-row mt-6 text-gray-700 bg-white shadow-lg duration-300 bg-clip-border rounded-xl xl:w-96 lg:w-80 w-full ${index === 1 ? 'shadow-[#FFE8C8]' : ''}`}
           >
@@ -65,3 +64,5 @@ const WhyUs = () => {
 };
 
 export default WhyUs;
+
+

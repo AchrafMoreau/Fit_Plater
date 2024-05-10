@@ -11,6 +11,7 @@
     .btn-phone-forget {
       @apply w-full mr-0 mb-2 text-xs;
     }
+    
 }
 
 /* html {

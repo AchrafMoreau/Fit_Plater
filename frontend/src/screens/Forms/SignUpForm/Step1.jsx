@@ -3,28 +3,15 @@ const Step1 = ({formData, handleInputChange}) => {
     
     return ( 
         <>
-              <div className="mb-2">
-                <label htmlFor="first_name" className="block mb-2 text-sm font-medium text-gray-700">First Name</label>
+            <div className="mb-2">
+                <label htmlFor="fullname" className="block mb-2 text-sm font-medium text-gray-700">Full Name</label>
                 <input
                   type="text"
-                  id="first_name"
-                  name="first_name"
-                  value={formData.first_name || ''}
+                  id="fullname"
+                  name="fullname"
+                  value={formData.fullname || ''}
                   onChange={handleInputChange}
-                  placeholder="Enter First name"
-                  className="w-full px-3 py-2 bg-InputBg border border-InputBg rounded-md outline-none focus:border-[#FC6212]"
-                />
-                <p className="mt-1 text-xs text-red-500"></p>
-              </div>
-              <div className="mb-2">
-                <label htmlFor="last_name" className="block mb-2 text-sm font-medium text-gray-700">Last Name</label>
-                <input
-                  type="text"
-                  id="last_name"
-                  name="last_name"
-                  value={formData.last_name || ''}
-                  onChange={handleInputChange}
-                  placeholder="Enter First name"
+                  placeholder="Enter full name"
                   className="w-full px-3 py-2 bg-InputBg border border-InputBg rounded-md outline-none focus:border-[#FC6212]"
                 />
                 <p className="mt-1 text-xs text-red-500"></p>
@@ -113,7 +100,19 @@ const Step1 = ({formData, handleInputChange}) => {
                 <p className="mt-1 text-xs text-red-500"></p>
               </div>
 
-              
+              <div className="mb-2">
+                <label htmlFor="allergies" className="block mb-2 text-sm font-medium text-gray-700">Allergies</label>
+                <input
+                  type="text"
+                  id="allergies"
+                  name="allergies"
+                  value={formData.allergies || ''}
+                  onChange={handleInputChange}
+                  placeholder="Enter allergies"
+                  className="w-full px-3 py-2 bg-InputBg border border-InputBg rounded-md outline-none focus:border-[#FC6212]"
+                />
+                <p className="mt-1 text-xs text-red-500"></p>
+              </div>
         </>
      );
 }
