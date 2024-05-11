@@ -1,13 +1,41 @@
 // Cart Menu
-import { FaTimes } from "react-icons/fa";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import EmptyCart from "../../../../images/emptyCart.svg";
-import { useSelector } from "react-redux";
+import { FaTimes } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import CartMenuElem from "./cartMenuElement";
+import EmptyCart from "../../../../images/emptyCart.svg";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart } from "../../../../redux/CartSlice";
+
 
 const CartMenu = ({ showCart, setShowMenu }) => {
-  const { MenuList, totalPrice } = useSelector((state) => state.ElemMenu);
+  const { MenuList, totalPrice : menuTotalPrice } = useSelector((state) => state.ElemMenu);
+  const { cartList, totalPrice : cartTotalPrice } = useSelector((state) => state.Cart);
+
+  const dispatch = useDispatch();
+
+  const addeElemtToCart = () => {
+    // Check if the plat already exists in the cart
+    const platExists = cartList.some(item => item.category === 'Plat');
+  
+    // If the plat doesn't exist, add it to the cart
+    if (!platExists && MenuList.length > 0) {
+      const plat = {
+        id: MenuList[0].id, // Assuming you want to use the first item's ID as the plat ID
+        category: 'Plat',
+        calories: MenuList.reduce((acc, item) => acc + (item.calories * item.quantity), 0), // Multiply calories by quantity and sum
+        protein: MenuList.reduce((acc, item) => acc + (item.protien * item.quantity), 0), // Multiply protein by quantity and sum
+        fat: MenuList.reduce((acc, item) => acc + (item.fat * item.quantity), 0), // Multiply fat by quantity and sum
+        ingredients: MenuList.map(item => item.name).join(', '), // Concatenate ingredients
+        image: MenuList[0].image, // Assuming you want to use the first item's image for the plat
+        price: menuTotalPrice, // Total price of the plat
+      };
+      dispatch(addToCart(plat)); // Dispatch addToCart action to add the plat to the cart
+    }
+  };
+  
+
 
   return (
 
@@ -25,7 +53,7 @@ const CartMenu = ({ showCart, setShowMenu }) => {
           Plat Elements
         </h3>
         <p className="text-gray-600">Total Elments: {MenuList.length}</p>
-        <p className="text-gray-600">Plat Price: {totalPrice} $</p>
+        <p className="text-gray-600">Plat Price: {menuTotalPrice} $</p>
 
         <div className="mt-6">
           {MenuList.length > 0 ? (
@@ -43,9 +71,9 @@ const CartMenu = ({ showCart, setShowMenu }) => {
         </div>
 
         {MenuList.length > 0 && (
-          <div className="flex justify-between mt-6">
-            <Link to='/shopping-cart' className="btn-blue">View Cart</Link>
-            <button className="btn-blue">Checkout</button>
+          <div className="flex justify-between mt-5 ">
+            <Link to='/shopping-cart' className="btn-secondary-sm">View Cart</Link>
+            <button className="btn-secondary-sm" onClick={addeElemtToCart}>Add To cart</button>
           </div>
         )}
       </motion.div>

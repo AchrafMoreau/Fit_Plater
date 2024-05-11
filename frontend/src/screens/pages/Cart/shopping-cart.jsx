@@ -5,7 +5,8 @@ import EmptyCart from "../../../images/emptyCart.svg";
 import { Link } from "react-router-dom";
 
 function ShoppingCart() {
-  const { cartList, totalPrice } = useSelector((state) => state.Cart);
+  const { cartList, totalPrice : cartTotalPrice } = useSelector((state) => state.Cart);
+  // const { cartMenu, totalPrice: menuTotalPrice } = useSelector((state) => state.ElemMenu);
   const dispatch = useDispatch();
 
   const handleRemoveFromCart = (meal) => {
@@ -78,7 +79,7 @@ function ShoppingCart() {
           <h1 className="font-Outfit text-2xl border-b pb-8">Order Summary</h1>
           <div className="flex justify-between mt-10 mb-5">
             <span className="font-Outfit text-sm uppercase">Items {cartList.length}</span>
-            <span className="font-Outfit text-sm">{totalPrice} MAD</span>
+            <span className="font-Outfit text-sm">{cartTotalPrice} MAD</span>
           </div>
           <div>
             <label className="font-Outfit inline-block mb-3 text-sm uppercase">Delivery</label>
@@ -89,7 +90,7 @@ function ShoppingCart() {
           <div className="border-t mt-8">
             <div className="flex font-Outfit justify-between py-6 text-sm uppercase">
               <span>Total cost</span>
-              <span>{(totalPrice + 10)} MAD</span>
+              <span>{(cartTotalPrice + 10)} MAD</span>
             </div>
             <button className="bg-myBlue font-Outfit hover:bg-myOrange py-3 text-sm text-white uppercase w-full duration-150">
               Checkout

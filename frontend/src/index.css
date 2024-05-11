@@ -11,7 +11,14 @@
     .btn-phone-forget {
       @apply w-full mr-0 mb-2 text-xs;
     }
-    
+}
+
+
+.btn-primary-sm {
+  @apply px-3 py-1 rounded-md text-sm uppercase font-semibold text-white bg-myOrange hover:shadow-md ;
+}
+.btn-secondary-sm {
+  @apply px-3 py-1 rounded-md text-sm uppercase font-semibold text-white bg-myOrange hover:shadow-md ;
 }
 
 /* html {
