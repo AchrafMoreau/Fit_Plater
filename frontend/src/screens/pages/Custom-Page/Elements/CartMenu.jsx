@@ -7,9 +7,14 @@ import CartMenuElem from "./cartMenuElement";
 import EmptyCart from "../../../../images/emptyCart.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../../../redux/CartSlice";
+import { MdFileDownloadDone } from "react-icons/md";
+
 
 
 const CartMenu = ({ showCart, setShowMenu }) => {
+
+  const [showNotification, setShowNotification] = useState(false);
+
   const { MenuList, totalPrice : menuTotalPrice } = useSelector((state) => state.ElemMenu);
   const { cartList, totalPrice : cartTotalPrice } = useSelector((state) => state.Cart);
 
@@ -32,7 +37,30 @@ const CartMenu = ({ showCart, setShowMenu }) => {
         price: menuTotalPrice, // Total price of the plat
       };
       dispatch(addToCart(plat)); // Dispatch addToCart action to add the plat to the cart
+
+      setShowNotification(true);
+
+      // Hide the notification after a delay (e.g., 3 seconds)
+      setTimeout(() => {
+        setShowNotification(false);
+      }, 3000);
     }
+  };
+
+  const notificationDiv = () => {
+    return (
+      <motion.div 
+        className="flex justify-center z-40 fixed top-20 right-0 w-full h-4"
+        initial={{opacity: 0, y: -10}}
+        animate={{opacity: 1, y: 0}}
+        transition={{duration: .2, ease: [.64,.04,.08, .98]}}
+      >
+        <div className="p-2 w-64 py-5 bg-myOrange items-center text-white leading-none rounded-full flex justify-between " role="alert">
+          <MdFileDownloadDone className="ml-2 mr-2" size={20} />
+          <span className="font-semibol font-Poppins mr-2 text-left flex-auto ">Added to cart successfully!</span>
+        </div>
+      </motion.div>
+    );
   };
   
 
@@ -72,10 +100,13 @@ const CartMenu = ({ showCart, setShowMenu }) => {
 
         {MenuList.length > 0 && (
           <div className="flex justify-between mt-5 ">
-            <Link to='/shopping-cart' className="btn-secondary-sm">View Cart</Link>
             <button className="btn-secondary-sm" onClick={addeElemtToCart}>Add To cart</button>
+            <Link to='/shopping-cart' className="px-3 py-1 rounded-md text-sm uppercase font-semibold text-black  bg-white hover:underline">View Cart</Link>
           </div>
         )}
+
+        {showNotification && notificationDiv()}
+        
       </motion.div>
   );
 };
