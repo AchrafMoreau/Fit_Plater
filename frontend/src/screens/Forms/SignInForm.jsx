@@ -2,8 +2,8 @@
 import { useState, useEffect } from 'react';
 import { ArrowRightIcon } from '@heroicons/react/24/solid';
 import { useNavigate, Link } from 'react-router-dom';
-import { auth } from '../../firebase/Firebase';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { loginUser } from '../../redux/features/authAction';
+import { useDispatch, useSelector } from 'react-redux';
 
 // Function to save user information in local storage
 const saveUserToLocalStorage = (user) => {
@@ -18,8 +18,11 @@ export default function SignInForm() {
     email: '',
     password: '',
   });
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+
+  const { loading, error, userInfo, success } = useSelector(state => state.auth)
+  const dispatch = useDispatch()
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -32,36 +35,41 @@ export default function SignInForm() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setLoading(true);
+    // setLoading(true);
 
     const errors = {};
 
     if (!email.match(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/)) {
       errors.email = 'Please enter a valid email address';
-      setLoading(false);
+      // setLoading(false);
     }
 
     if (!password || password.length < 8) {
       errors.password = 'Password must be at least 8 characters';
-      setLoading(false);
+      // setLoading(false);
     }
 
-    if (Object.keys(errors).length === 0) {
-      signInWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-          console.log(userCredential);
+    // if (Object.keys(errors).length === 0) {
+    //   signInWithEmailAndPassword(auth, email, password)
+    //     .then((userCredential) => {
+    //       console.log(userCredential);
 
-          // Save user information in local storage
-          saveUserToLocalStorage(userCredential.user);
+    //       // Save user information in local storage
+    //       saveUserToLocalStorage(userCredential.user);
 
-          setLoading(false);
-          navigate('/home', { replace: true });
-        })
-        .catch((error) => {
-          console.log('Error: ', error);
-          errors.email = 'Invalid Email or Password';
-          setLoading(false);
-        });
+    //       setLoading(false);
+    //       navigate('/home', { replace: true });
+    //     })
+    //     .catch((error) => {
+    //       console.log('Error: ', error);
+    //       errors.email = 'Invalid Email or Password';
+    //       setLoading(false);
+    //     });
+    // }
+
+    dispatch(loginUser({email, password}))
+    if(success){
+      navigate('/home')
     }
 
     setErrors(errors);
@@ -125,12 +133,12 @@ export default function SignInForm() {
             >
             
               SIGN IN
-              {    
+              {/* {    
                 !loading ? 
                   <ArrowRightIcon className="w-3 h-3 ml-1" />
                 :
                   <span className="ml-2 loading loading-dots loading-xs"></span>
-              }
+              } */}
             
             </button>
                 

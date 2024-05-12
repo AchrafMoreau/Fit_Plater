@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { removeFromCart, addToCart } from "../../../redux/CartSlice";
 import EmptyCart from "../../../images/emptyCart.svg";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 function ShoppingCart() {
   const { cartList, totalPrice : cartTotalPrice } = useSelector((state) => state.Cart);
@@ -16,6 +17,22 @@ function ShoppingCart() {
   const handleAddToCart = (meal) => {
     dispatch(addToCart(meal));
   };
+
+  
+  const handelOrder = ()=>{
+    const token = JSON.parse(localStorage.getItem('user')).token
+    console.log(token)
+    axios.post('http://127.0.0.1:8000/api/order',meal,{
+        headers: {
+            'Content-Type': 'application/json',
+            "Accept": "application/json",
+            // "Authorization": token
+            "Authorization": `Bearer ${token}`
+        },
+    })
+    .then(({data})=> console.log(data))
+    .then((err)=> console.log(err))
+  }
 
   return (
       <div className="sm:flex h-screen pt-2 px-4 w-full">

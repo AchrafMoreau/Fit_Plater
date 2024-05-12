@@ -17,45 +17,57 @@ const Step2 = ({ formData, handleInputChange }) => {
       </div>
 
       <div className="mb-2">
-        <label htmlFor="FavIngredients" className="block mb-2 text-sm font-medium text-gray-700">Favorite Ingredients</label>
+        <label htmlFor="allergies" className="block mb-2 text-sm font-medium text-gray-700">Allergies</label>
         <input
           type="text"
-          id="FavIngredients"
-          name="FavIngredients"
-          value={formData.FavIngredients || ''}
+          id="allergies"
+          name="allergies"
+          value={formData.allergies || ''}
           onChange={handleInputChange}
-          placeholder="Enter favorite ingredients"
+          placeholder="Enter allergies"
+          className="w-full px-3 py-2 bg-InputBg border border-InputBg rounded-md outline-none focus:border-[#FC6212]"
+        />
+        <p className="mt-1 text-xs text-red-500"></p>
+      </div>
+      <div className="mb-2">
+        <label htmlFor="type" className="block mb-2 text-sm font-medium text-gray-700">Sport Type</label>
+        <input
+          type="text"
+          id="type"
+          name="type"
+          value={formData.type || ''}
+          onChange={handleInputChange}
+          placeholder="Enter type of sport you do"
           className="w-full px-3 py-2 bg-InputBg border border-InputBg rounded-md outline-none focus:border-[#FC6212]"
         />
         <p className="mt-1 text-xs text-red-500"></p>
       </div>
 
       <div className="mb-2">
-        <label htmlFor="dietaryRestrictions" className="block mb-2 text-sm font-medium text-gray-700">Dietary Restrictions</label>
+        <label htmlFor="musclePercentage" className="block mb-2 text-sm font-medium text-gray-700">Muscle Percentage </label>
         <input
-          type="text"
-          id="dietaryRestrictions"
-          name="dietaryRestrictions"
-          value={formData.dietaryRestrictions || ''}
+          type="number"
+          id="musclePercentage"
+          name="musclePercentage"
+          value={formData.musclePercentage || ''}
           onChange={handleInputChange}
-          placeholder="Enter dietary restrictions"
+          placeholder="Enter your Muscle Percentage"
           className="w-full px-3 py-2 bg-InputBg border border-InputBg rounded-md outline-none focus:border-[#FC6212]"
         />
         <p className="mt-1 text-xs text-red-500"></p>
       </div>
 
       <div className="mb-2">
-        <label htmlFor="MealTiming" className="block mb-2 text-sm font-medium text-gray-700">Meal Timing Preferences</label>
-        <select
-          id="MealTiming"
-          name="MealTiming"
-          value={formData.MealTiming || ''}
+        <label htmlFor="FatPercentage" className="block mb-2 text-sm font-medium text-gray-700">Fat Percentage</label>
+        <input
+          type="number"
+          id="FatPercentage"
+          name="FatPercentage"
+          value={formData.FatPercentage || ''}
           onChange={handleInputChange}
+          placeholder="Enter your Fat Percentage"
           className="w-full px-3 py-2 bg-InputBg border border-InputBg rounded-md outline-none focus:border-[#FC6212]"
-        >
-          <option value="morning">morning person</option>
-          <option value="evening">evening person</option>
-        </select>
+        /> 
         <p className="mt-1 text-xs text-red-500"></p>
       </div>
 
@@ -65,21 +77,6 @@ const Step2 = ({ formData, handleInputChange }) => {
           id="fitnessGoal"
           name="fitnessGoal"
           value={formData.fitnessGoal || ''}
-          onChange={handleInputChange}
-          className="w-full px-3 py-2 bg-InputBg border border-InputBg rounded-md outline-none focus:border-[#FC6212]"
-        >
-          <option value="morning">example</option>
-          <option value="evening">example</option>
-        </select>
-        <p className="mt-1 text-xs text-red-500"></p>
-      </div>
-
-      <div className="mb-2">
-        <label htmlFor="dietaryPreferences" className="block mb-2 text-sm font-medium text-gray-700">Dietary Preferences</label>
-        <select
-          id="dietaryPreferences"
-          name="dietaryPreferences"
-          value={formData.dietaryPreferences || ''}
           onChange={handleInputChange}
           className="w-full px-3 py-2 bg-InputBg border border-InputBg rounded-md outline-none focus:border-[#FC6212]"
         >
@@ -104,12 +101,12 @@ const Step2 = ({ formData, handleInputChange }) => {
       </div>
 
       <div className="mb-2">
-        <label htmlFor="confirmPassword" className="block mb-2 text-sm font-medium text-gray-700">Confirm Password</label>
+        <label htmlFor="password_confirmation" className="block mb-2 text-sm font-medium text-gray-700">Confirm Password</label>
         <input
           type="password"
-          id="confirmPassword"
-          name="confirmPassword"
-          value={formData.confirmPassword || ''}
+          id="password_confirmation"
+          name="password_confirmation"
+          value={formData.password_confirmation || ''}
           onChange={handleInputChange}
           placeholder="Confirm password"
           className="w-full px-3 py-2 bg-InputBg border border-InputBg rounded-md outline-none focus:border-[#FC6212]"
