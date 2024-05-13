@@ -31,7 +31,7 @@ const Cart = ({ showCart, setShowCart }) => {
           Your Cart
         </h3>
         <p className="text-gray-600">Total Items: {cartList.length}</p>
-        <p className="text-gray-600">Total Price: {totalPrice} $</p>
+        <p className="text-gray-600">Total Price: {totalPrice} MAD</p>
 
         <div className="mt-6">
           {cartList.length > 0 ? (

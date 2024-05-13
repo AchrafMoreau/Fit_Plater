@@ -19,7 +19,7 @@ class CustomerTabelSeeder extends Seeder
      */
     public function run()
     {
-        Customer::factory(10)->create();
+        Customer::factory(2)->create();
         
     }
 }

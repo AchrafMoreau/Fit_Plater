@@ -20,14 +20,14 @@ const ElementItem = ({ elem, setShowMenu }) => {
       <div className="card-body text-myBlue">
         <h2 className="card-title text-sm lg:text-base">{elem.name}</h2>
         <p className="text-xs lg:text-sm">
-          {elem.calories} calories, {elem.protien} g protein, {elem.fat} g fat
+          {elem.calories} calories, {elem.protein} g protein, {elem.fat} g fat
         </p>
         <div
           onClick={(e) => e.stopPropagation()}
           className="card-actions py-2 lg:py-3 justify-between items-center"
         >
-          <p className="bg-myOrange text-white px-2 lg:px-3 flex-none rounded-2xl font-Poppins text-xs lg:text-sm font-semibold">
-            {elem?.price} $ / {elem.measuredByGram ? 'item' : '100g' }
+          <p className="bg-myOrange text-white px-2 lg:px-3 flex-none rounded-2xl font-Poppins text-xs lg:text-sm">
+            {elem?.price} MAD / {elem.measuredByGram ? 'item' : '100g' }
           </p>
 
           <span

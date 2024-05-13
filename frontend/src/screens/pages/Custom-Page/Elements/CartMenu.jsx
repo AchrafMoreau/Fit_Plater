@@ -22,22 +22,31 @@ const CartMenu = ({ showCart, setShowMenu }) => {
 
   const addeElemtToCart = () => {
     // Check if the plat already exists in the cart
-    const platExists = cartList.some(item => item.category === 'Plat');
+    const platExists = cartList.some(item => item.category === 'Custom-Plate');
   
     // If the plat doesn't exist, add it to the cart
     if (!platExists && MenuList.length > 0) {
+      
+      const elements = [];
+      MenuList.forEach(item => {
+        elements.push(item.name); // Push each ingredient as a separate element
+        // console.log(item.protein)
+      });
+
       const plat = {
         id: MenuList[0].id, // Assuming you want to use the first item's ID as the plat ID
-        category: 'Plat',
+        category: 'Custom-Plate',
         calories: MenuList.reduce((acc, item) => acc + (item.calories * item.quantity), 0), // Multiply calories by quantity and sum
-        protein: MenuList.reduce((acc, item) => acc + (item.protien * item.quantity), 0), // Multiply protein by quantity and sum
+        protein: MenuList.reduce((acc, item) => acc + (item.protein * item.quantity), 0), // Multiply protein by quantity and sum
+        carbs: MenuList.reduce((acc, item) => acc + (item.carbohydrates * item.quantity), 0), // Multiply carbohydrates by quantity and sum
         fat: MenuList.reduce((acc, item) => acc + (item.fat * item.quantity), 0), // Multiply fat by quantity and sum
-        ingredients: MenuList.map(item => item.name).join(', '), // Concatenate ingredients
+        ingredients: elements,
         image: MenuList[0].image, // Assuming you want to use the first item's image for the plat
         price: menuTotalPrice, // Total price of the plat
       };
       dispatch(addToCart(plat)); // Dispatch addToCart action to add the plat to the cart
 
+      // console.log(plat.protein)
       setShowNotification(true);
 
       // Hide the notification after a delay (e.g., 3 seconds)
@@ -81,7 +90,7 @@ const CartMenu = ({ showCart, setShowMenu }) => {
           Plat Elements
         </h3>
         <p className="text-gray-600">Total Elments: {MenuList.length}</p>
-        <p className="text-gray-600">Plat Price: {menuTotalPrice} $</p>
+        <p className="text-gray-600">Plat Price: {menuTotalPrice} MAD</p>
 
         <div className="mt-6">
           {MenuList.length > 0 ? (

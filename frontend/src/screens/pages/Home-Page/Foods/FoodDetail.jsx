@@ -28,7 +28,7 @@ const FoodDetail = ({ showDetail, setShowDetail, item }) => {
           <div className="flex flex-row justify-between mb-2 items-center">
             <span className="font-Outfit text-xl text-myBlue">{item?.category}</span>
             <p className="bg-myOrange text-white px-3 rounded-2xl font-Poppins text-base font-semibold">
-              {item?.price.toFixed(2)} $
+              {item?.price.toFixed(2)} MAD
             </p>
           </div>
           <p className="text-gray-700 text-base">

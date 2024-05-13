@@ -36,7 +36,7 @@ const Elements = () => {
                 </div>
 
                 {/* All foods */}
-                <div className="flex flex-row mt-10">
+                <div className="flex flex-row mt-8">
                     <div className="gap-4 w-full flex justify-center flex-row mx-auto flex-wrap transition-all duration-300">
                         {elements.map((elem) => (
                             loading ? <Skeleton key={elem.id} /> : <ELementItem key={elem.id} elem={elem} setShowMenu={setShowMenu}   />
@@ -59,7 +59,7 @@ const Elements = () => {
 
     return (
         <div className="relative">
-            <section className='my-20 flex justify-center flex-col gap-4 mx-auto bg-[#FFF6EA] px-[3%] pt-8 pb-20'>
+            <section className='my6 flex justify-center flex-col gap-4 mx-auto bg-[#FFF6EA] px-[3%] pt-8 pb-20'>
                 {section('Elements', 'Select Elements and choose your meal')}
             </section>
         </div>

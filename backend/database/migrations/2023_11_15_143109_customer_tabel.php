@@ -64,7 +64,7 @@ return new class extends Migration
             $tabel->string('name')->uniqid();
             $tabel->string('image');
             $tabel->integer('calories');
-            $tabel->integer('protien');
+            $tabel->integer('protein');
             $tabel->integer('carbohydrates');
             $tabel->integer('fat');
             $tabel->boolean('measuredByGram');
@@ -79,7 +79,7 @@ return new class extends Migration
             $tabel->integer('total_calories');
             $tabel->integer('total_carbohydate');
             $tabel->integer('total_fat');
-            $tabel->integer('total_protien');
+            $tabel->integer('total_protein');
             $tabel->decimal('meal_price');
             $tabel->timestamps();
         });

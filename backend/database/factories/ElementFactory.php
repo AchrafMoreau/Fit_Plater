@@ -20,7 +20,7 @@ class ElementFactory extends Factory
             "name" => $this->faker->name(),
             "image" => $this->faker->imageUrl(),
             "calories" => $this->faker->numberBetween(0, 100),
-            "protien" => $this->faker->numberBetween(0, 100),
+            "protein" => $this->faker->numberBetween(0, 100),
             "carbohydrates" => $this->faker->numberBetween(0, 100),
             "fat" => $this->faker->numberBetween(0, 100),
             "price" => $this->faker->numberBetween(0, 50),

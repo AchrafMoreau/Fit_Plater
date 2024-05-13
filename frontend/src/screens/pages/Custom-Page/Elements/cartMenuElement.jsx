@@ -12,7 +12,7 @@ const CartMenuElem = ({ el }) => {
         <img className="h-12 w-12 object-cover rounded" src={el.image} alt={el.category} />
         <div>
           <h3 className="font-normal text-sm">{el.name}</h3>
-          <p className="text-gray-500 text-xs">{el.quantity} x {el.price} $</p>
+          <p className="text-gray-500 text-xs">{el.quantity} x {el.price} MAD</p>
         </div>
       </div>
       <div className="flex items-center">
