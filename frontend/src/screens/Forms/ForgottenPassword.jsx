@@ -1,4 +1,4 @@
-import { getAuth, sendPasswordResetEmail } from "firebase/auth";
+// import { getAuth, sendPasswordResetEmail } from "firebase/auth";
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Alert from "./Alert";
