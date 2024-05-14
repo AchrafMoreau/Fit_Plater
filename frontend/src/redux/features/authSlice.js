@@ -22,7 +22,7 @@ const authSlice = createSlice({
                 state.error = null
             })
             .addCase(loginUser.fulfilled, (state, { payload })=>{
-                state.pending = false
+                state.loading = false
                 state.success = true
                 state.userInfo = payload.customer
                 state.userToken = payload.token

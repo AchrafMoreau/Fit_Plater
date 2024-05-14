@@ -34,7 +34,7 @@ const CartMenu = ({ showCart, setShowMenu }) => {
       });
 
       const plat = {
-        id: MenuList[0].id, // Assuming you want to use the first item's ID as the plat ID
+        id: '100', // Assuming you want to use the first item's ID as the plat ID
         category: 'Custom-Plate',
         calories: MenuList.reduce((acc, item) => acc + (item.calories * item.quantity), 0), // Multiply calories by quantity and sum
         protein: MenuList.reduce((acc, item) => acc + (item.protein * item.quantity), 0), // Multiply protein by quantity and sum

@@ -45,7 +45,7 @@ const Navbar = ({ setShowCart }) => {
         } rounded-lg transition-all duration-300 bg-white fixed top-0 z-10 items-center px-[4%] duration-400`}
       >
         <div className="container mx-auto flex flex-wrap items-center justify-between">
-          <Link to="/home" className="flex max-w-10">
+          <Link to="/" className="flex max-w-10">
             {isSticky ? (
               <img src={logo} alt="logo" width={40} height={40} />
             ) : (

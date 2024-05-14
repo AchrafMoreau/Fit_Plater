@@ -5,10 +5,6 @@ import { useNavigate, Link } from 'react-router-dom';
 import { loginUser } from '../../redux/features/authAction';
 import { useDispatch, useSelector } from 'react-redux';
 
-// Function to save user information in local storage
-const saveUserToLocalStorage = (user) => {
-  localStorage.setItem('user', JSON.stringify(user));
-};
 
 // SignInForm component
 export default function SignInForm() {
@@ -49,28 +45,11 @@ export default function SignInForm() {
       // setLoading(false);
     }
 
-    // if (Object.keys(errors).length === 0) {
-    //   signInWithEmailAndPassword(auth, email, password)
-    //     .then((userCredential) => {
-    //       console.log(userCredential);
-
-    //       // Save user information in local storage
-    //       saveUserToLocalStorage(userCredential.user);
-
-    //       setLoading(false);
-    //       navigate('/home', { replace: true });
-    //     })
-    //     .catch((error) => {
-    //       console.log('Error: ', error);
-    //       errors.email = 'Invalid Email or Password';
-    //       setLoading(false);
-    //     });
-    // }
-
-    dispatch(loginUser({email, password}))
-    if(success){
-      navigate('/home')
-    }
+    dispatch(loginUser({ email, password })).then((success) => {
+      if (success) {
+        navigate('/home');
+      }
+    });
 
     setErrors(errors);
   };
@@ -81,7 +60,7 @@ export default function SignInForm() {
     if (userFromLocalStorage) {
       navigate('/home', { replace: true });
     }
-  }, [navigate]);
+  }, []);
 
 
   // Render the component
@@ -133,12 +112,12 @@ export default function SignInForm() {
             >
             
               SIGN IN
-              {/* {    
+              {    
                 !loading ? 
                   <ArrowRightIcon className="w-3 h-3 ml-1" />
                 :
                   <span className="ml-2 loading loading-dots loading-xs"></span>
-              } */}
+              }
             
             </button>
                 
