@@ -20,21 +20,22 @@ const authSlice = createSlice({
             .addCase(loginUser.pending, (state)=>{
                 state.loading = true
                 state.error = null
+                state.success = false
             })
             .addCase(loginUser.fulfilled, (state, { payload })=>{
                 state.loading = false
                 state.success = true
-                state.userInfo = payload.customer
                 state.userToken = payload.token
             })
             .addCase(loginUser.rejected, (state, { payload })=>{
                 state.loading = false
+                state.success = false
                 state.error = payload
             })
         // register User ------------
             .addCase(registerUser.pending, (state)=>{
                 state.loading = true
-                state.error = null
+                state.error = null  
             })
             .addCase(registerUser.fulfilled, (state, { payload })=>{
                 state.loading = false

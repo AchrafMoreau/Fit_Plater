@@ -45,22 +45,17 @@ export default function SignInForm() {
       // setLoading(false);
     }
 
-    dispatch(loginUser({ email, password })).then((success) => {
-      if (success) {
-        navigate('/home');
-      }
-    });
-
-    setErrors(errors);
+    dispatch(loginUser({ email, password }))
+    // setErrors(errors);
   };
 
   useEffect(() => {
     // Check if the user is already logged in
     const userFromLocalStorage = JSON.parse(localStorage.getItem('user'));
-    if (userFromLocalStorage) {
+    if (userFromLocalStorage || success ) {
       navigate('/home', { replace: true });
     }
-  }, []);
+  }, [success]);
 
 
   // Render the component
