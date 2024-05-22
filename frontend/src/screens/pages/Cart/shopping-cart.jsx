@@ -36,7 +36,7 @@ function ShoppingCart() {
 
   return (
       <div className="sm:flex h-screen pt-2 px-4 w-full">
-        <div className="w-full sm:w-3/4 bg-white px-10 py-10 h-screen overflow-auto ">
+        <div className="w-full sm:w-3/4 bg-white px-10 py-10 sm:h-screen overflow-auto ">
           <div className="flex justify-between border-b pb-8 ">
             <h1 className="font-Outfit text-2xl">Shopping Cart</h1>
             <h2 className="font-Outfit text-2xl">{cartList.length} Items</h2>
@@ -84,9 +84,7 @@ function ShoppingCart() {
 
           <Link to="/home" className="flex font-semibold text-myOrange text-sm mt-10">
             <svg className="fill-current mr-2 w-4" viewBox="0 0 448 512">
-              <path
-                d="M134.059 296H436c6.627 0 12-5.373 12-12v-56c0-6.627-5.373-12-12-12H134.059v-46.059c0-21.382-25.851-32.09-40.971-16.971L7.029 239.029c-9.373 9.373-9.373 24.569 0 33.941l86.059 86.059c15.119 15.119 40.971 4.411 40.971-16.971V296z"
-              />
+              <path d="M134.059 296H436c6.627 0 12-5.373 12-12v-56c0-6.627-5.373-12-12-12H134.059v-46.059c0-21.382-25.851-32.09-40.971-16.971L7.029 239.029c-9.373 9.373-9.373 24.569 0 33.941l86.059 86.059c15.119 15.119 40.971 4.411 40.971-16.971V296z" />
             </svg>
             Continue Shopping
           </Link>
@@ -95,8 +93,8 @@ function ShoppingCart() {
         <div id="summary" className="w-full sm:w-1/4 md:w-1/2 px-8 py-10">
           <h1 className="font-Outfit text-2xl border-b pb-8">Order Summary</h1>
           <div className="flex justify-between mt-10 mb-5">
-            <span className="font-Outfit text-sm uppercase">Items {cartList.length}</span>
-            <span className="font-Outfit text-sm">{cartTotalPrice} MAD</span>
+            <span className="font-Outfit text-sm uppercase">{cartList.length} Items</span>
+            <span className="font-Outfit text-sm">{cartTotalPrice.toFixed(2)} MAD</span>
           </div>
           <div>
             <label className="font-Outfit inline-block mb-3 text-sm uppercase">Delivery</label>
@@ -107,7 +105,7 @@ function ShoppingCart() {
           <div className="border-t mt-8">
             <div className="flex font-Outfit justify-between py-6 text-sm uppercase">
               <span>Total cost</span>
-              <span>{(cartTotalPrice + 10)} MAD</span>
+              <span>{(cartTotalPrice + 10).toFixed(2)} MAD</span>
             </div>
             <button className="bg-myBlue font-Outfit hover:bg-myOrange py-3 text-sm text-white uppercase w-full duration-150">
               Checkout

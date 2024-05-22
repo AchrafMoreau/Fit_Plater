@@ -17,7 +17,9 @@ class MealController extends Controller
     
     public function index(Request $request)
     {
-        return  meals_element::with(['mealId', 'elementId'])->get();
+        // return  meals_element::with(['mealId', 'elementId'])->get();
+        $meals = Meal::all();
+        return $meals;
         
     }
 

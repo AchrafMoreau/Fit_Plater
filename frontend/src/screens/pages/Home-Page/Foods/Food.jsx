@@ -1,14 +1,26 @@
 import { useEffect, useState } from 'react';
 import FoodItem from './FoodItem';
 import Skeleton from './Skeleton';
-import useFetch from '../../../../hooks/useFetch';
 import FoodDetail from './FoodDetail';
 
 const Food = () => {
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
     const [showDetail, setShowDetail] = useState(false);
     const [selectedItem, setSelectedItem] = useState(null);
-    const [foods] = useFetch();
+    const [foods, setFoods] = useState([]);
+
+    useEffect(() => {
+        fetch('http://127.0.0.1:8000/api/meals')
+            .then(res => res.json())
+            .then(data => {
+                setFoods(data);
+                setLoading(false);
+            })
+            .catch(err => {
+                console.log(err);
+                setLoading(false);
+            });
+    }, []);
 
     // Separate state for each section
     const [menuTabs, setMenuTabs] = useState({
@@ -17,66 +29,51 @@ const Food = () => {
         'section3': 'Pre-Workout',
     });
 
-    // Loading
-    useEffect(() => {
-        setLoading(true);
-        setTimeout(() => {
-            setLoading(false);
-        }, 1000);
-    }, []);
-
     // Food menu tab
     const handleMenuTabs = (section, type) => {
         setMenuTabs((prevTabs) => ({ ...prevTabs, [section]: type }));
     };
 
-    const section = (title, subtitle, sectionId) => {
-        return (
-            <>
-                <div className='flex mt-8 justify-between items-center lg:mx-6 mx-auto lg:flex-row flex-col'>
-                    <div>
-                        <h3 className="font-Outfit text-2xl text-headersBlue font-semibold">
-                            {title}
-                        </h3>
-                        <p className="font-sans text-sm text-gray-500 ">
-                            {subtitle}
-                        </p>
-                    </div>
-                    {/* Food Menu tab */}
-                    <div className="flex items-center shadow-md font-Outfit bg-white px-4 py-2 rounded-full mt-5 lg:mt-0  space-x-3">
-                        <button
-                            className={`${
-                            menuTabs[sectionId] === 'Pre-Workout'
-                                ? 'bg-myOrange text-white'
-                                : 'bg-white text-myBlue'
-                            } py-2 px-6 rounded-full focus:outline-none transition duration-300 ease-in-out `}
-                            onClick={() => handleMenuTabs(sectionId, 'Pre-Workout')}
-                        >
-                            Pre-Workout
-                        </button>
-                        <button
-                            className={`${
-                            menuTabs[sectionId] === 'After-Workout'
-                                ? 'bg-myOrange text-white'
-                                : 'bg-white text-myBlue'
-                            } py-2 px-6 rounded-full focus:outline-none transition duration-300 ease-in-out`}
-                            onClick={() => handleMenuTabs(sectionId, 'After-Workout')}
-                        >
-                            After-Workout
-                        </button>
-                        </div>
+    const section = (title, subtitle, sectionId) => (
+        <>
+            <div className='flex mt-8 justify-between items-center lg:mx-6 mx-auto lg:flex-row flex-col'>
+                <div>
+                    <h3 className="font-Outfit text-2xl text-headersBlue font-semibold">
+                        {title}
+                    </h3>
+                    <p className="font-sans text-sm text-gray-500">
+                        {subtitle}
+                    </p>
+                </div>
+                {/* Food Menu tab */}
+                <div className="flex items-center shadow-md font-Outfit bg-white px-4 py-2 rounded-full mt-5 lg:mt-0 space-x-3">
+                    <button
+                        className={`${menuTabs[sectionId] === 'Pre-Workout' ? 'bg-myOrange text-white' : 'bg-white text-myBlue'} py-2 px-6 rounded-full focus:outline-none transition duration-300 ease-in-out`}
+                        onClick={() => handleMenuTabs(sectionId, 'Pre-Workout')}
+                    >
+                        Pre-Workout
+                    </button>
+                    <button
+                        className={`${menuTabs[sectionId] === 'After-Workout' ? 'bg-myOrange text-white' : 'bg-white text-myBlue'} py-2 px-6 rounded-full focus:outline-none transition duration-300 ease-in-out`}
+                        onClick={() => handleMenuTabs(sectionId, 'After-Workout')}
+                    >
+                        After-Workout
+                    </button>
+                </div>
+            </div>
 
-                    </div>
-
-                    {/* All foods */}
-                    <div className="gap-10 mt-12 flex justify-center flex-row mx-auto flex-wrap">
-                        {foods.filter((item) => menuTabs[sectionId] === item.category).map((item, index) => (
-                            loading ? <Skeleton key={index} /> : <FoodItem key={index} item={item} setShowDetail={setShowDetail} setSelectedItem={setSelectedItem} />
-                        ))}
-                    </div>
-                </>
-            );
-        };
+            {/* All foods */}
+            <div className="gap-10 mt-12 flex justify-center flex-row mx-auto flex-wrap">
+                {loading ? (
+                    <Skeleton />
+                ) : (
+                    foods.filter((item) => menuTabs[sectionId] === item.category).map((item) => (
+                        <FoodItem key={item.id} item={item} setShowDetail={setShowDetail} setSelectedItem={setSelectedItem} />
+                    ))
+                )}
+            </div>
+        </>
+    );
 
     return (
         <div className="relative">

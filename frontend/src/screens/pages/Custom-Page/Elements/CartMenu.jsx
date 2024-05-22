@@ -38,7 +38,7 @@ const CartMenu = ({ showCart, setShowMenu }) => {
         category: 'Custom-Plate',
         calories: MenuList.reduce((acc, item) => acc + (item.calories * item.quantity), 0), // Multiply calories by quantity and sum
         protein: MenuList.reduce((acc, item) => acc + (item.protein * item.quantity), 0), // Multiply protein by quantity and sum
-        carbs: MenuList.reduce((acc, item) => acc + (item.carbohydrates * item.quantity), 0), // Multiply carbohydrates by quantity and sum
+        carbs: MenuList.reduce((acc, item) => acc + (item.carbs * item.quantity), 0), // Multiply carbohydrates by quantity and sum
         fat: MenuList.reduce((acc, item) => acc + (item.fat * item.quantity), 0), // Multiply fat by quantity and sum
         ingredients: elements,
         image: MenuList[0].image, // Assuming you want to use the first item's image for the plat

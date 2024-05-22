@@ -17,11 +17,11 @@ class ElementFactory extends Factory
     public function definition()
     {
         return [
-            "name" => $this->faker->name(),
+            "name" => $this->faker->word,
             "image" => $this->faker->imageUrl(),
             "calories" => $this->faker->numberBetween(0, 100),
             "protein" => $this->faker->numberBetween(0, 100),
-            "carbohydrates" => $this->faker->numberBetween(0, 100),
+            "carbs" => $this->faker->numberBetween(0, 100),
             "fat" => $this->faker->numberBetween(0, 100),
             "price" => $this->faker->numberBetween(0, 50),
             "measuredByGram" => $this->faker->boolean(0, 50),

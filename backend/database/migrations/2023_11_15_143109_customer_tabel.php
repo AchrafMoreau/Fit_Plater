@@ -15,89 +15,89 @@ return new class extends Migration
     public function up()
     {
 
-        Schema::create('types', function(Blueprint $tabel){
-            $tabel->id('id');
-            $tabel->string('type');
-            $tabel->timestamps();
+        Schema::create('types', function(Blueprint $table){
+            $table->id();
+            $table->string('type');
+            $table->timestamps();
         });
-        Schema::create('goals', function(Blueprint $tabel){
-            $tabel->id('id');
-            $tabel->string('goal');
-            $tabel->timestamps();
+        Schema::create('goals', function(Blueprint $table){
+            $table->id();
+            $table->string('goal');
+            $table->timestamps();
         });
-        Schema::create('productivities', function(Blueprint $tabel){
-            $tabel->id('id');
-            $tabel->string('productivity');
-            $tabel->timestamps();
+        Schema::create('productivities', function(Blueprint $table){
+            $table->id();
+            $table->string('productivity');
+            $table->timestamps();
         });
-        Schema::create('allergies', function(Blueprint $tabel){
-            $tabel->id('id');
-            $tabel->string('allergy');
-            $tabel->timestamps();
+        Schema::create('allergies', function(Blueprint $table){
+            $table->id();
+            $table->string('allergy');
+            $table->timestamps();
         });
-        Schema::create('customers', function(Blueprint $tabel){
-            $tabel->id('id');
-            $tabel->string('first_name');
-            $tabel->string('last_name')->nullable();
-            $tabel->string('email')->unique();
-            $tabel->integer('age')->nullable();
-            $tabel->integer('weight')->nullable();
-            $tabel->integer('height')->nullable();
-            $tabel->string('gender')->nullable();
-            $tabel->string('phone')->nullable();
-            $tabel->string('password');
-            $tabel->foreignId('goal_id')->nullable()->constrained()->onDelete('cascade');
-            $tabel->foreignId('type_id')->nullable()->constrained()->onDelete('cascade');
-            $tabel->foreignId('productivity_id')->nullable()->constrained()->onDelete('cascade');
-            $tabel->integer('FatPercentage')->nullable();
-            $tabel->integer('MusclePercentage')->nullable();
-            $tabel->foreignId('allergy_id')->nullable()->constrained()->onDelete('cascade');
-            $tabel->timestamps();
+        Schema::create('customers', function(Blueprint $table){
+            $table->id();
+            $table->string('first_name');
+            $table->string('last_name')->nullable();
+            $table->string('email')->unique();
+            $table->integer('age')->nullable();
+            $table->integer('weight')->nullable();
+            $table->integer('height')->nullable();
+            $table->string('gender')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('password');
+            $table->foreignId('goal_id')->nullable()->constrained()->onDelete('cascade');
+            $table->foreignId('type_id')->nullable()->constrained()->onDelete('cascade');
+            $table->foreignId('productivity_id')->nullable()->constrained()->onDelete('cascade');
+            $table->integer('FatPercentage')->nullable();
+            $table->integer('MusclePercentage')->nullable();
+            $table->foreignId('allergy_id')->nullable()->constrained()->onDelete('cascade');
+            $table->timestamps();
         });
 
+
+        Schema::create('elements', function(Blueprint $table){
+            $table->id();
+            $table->string('name')->uniqid();
+            $table->string('image');
+            $table->integer('calories');
+            $table->integer('protein');
+            $table->integer('carbs');
+            $table->integer('fat');
+            $table->boolean('measuredByGram');
+            $table->decimal('price');
+            $table->timestamps();
+        });
+
+
+        Schema::create('meals', function (Blueprint $table) {
+            $table->id();
+            // $table->foreignId('element_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
+            $table->string('category')->nullable();
+            $table->string('image');
+            $table->integer('calories');
+            $table->integer('protein');
+            $table->integer('carbs'); // Corrected typo from 'total_carbohydate' to 'total_carbohydrate'
+            $table->integer('fat');
+            $table->decimal('price', 8, 2); // Added precision and scale for decimal
+            $table->timestamps();
+        });
         
-
-
-
-        Schema::create('elements', function(Blueprint $tabel){
-            $tabel->id('id');
-            $tabel->string('name')->uniqid();
-            $tabel->string('image');
-            $tabel->integer('calories');
-            $tabel->integer('protein');
-            $tabel->integer('carbohydrates');
-            $tabel->integer('fat');
-            $tabel->boolean('measuredByGram');
-            $tabel->decimal('price');
-            $tabel->timestamps();
+        Schema::create('meals_elements', function(Blueprint $table){
+            $table->id();
+            $table->foreignId('meal_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('element_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
+            $table->integer("size");
+            $table->timestamps();
         });
 
-
-        Schema::create('meals', function(Blueprint $tabel){
-            $tabel->id('id');
-            // $tabel->foreignId('element_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
-            $tabel->integer('total_calories');
-            $tabel->integer('total_carbohydate');
-            $tabel->integer('total_fat');
-            $tabel->integer('total_protein');
-            $tabel->decimal('meal_price');
-            $tabel->timestamps();
-        });
-
-        Schema::create('meals_elements', function(Blueprint $tabel){
-            $tabel->foreignId('element_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
-            $tabel->foreignId('meal_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
-            $tabel->integer("size");
-            $tabel->timestamps();
-        });
-
-        Schema::create('orders', function(Blueprint $tabel){
-            $tabel->id('id');
-            $tabel->foreignId('customer_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
-            $tabel->foreignId('meal_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
-            $tabel->decimal('total_price');
-            $tabel->boolean('confirmed');
-            $tabel->timestamps();
+        Schema::create('orders', function(Blueprint $table){
+            $table->id();
+            $table->foreignId('customer_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('meal_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
+            $table->decimal('total_price');
+            $table->boolean('confirmed');
+            $table->timestamps();
         });
 
 

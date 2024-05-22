@@ -77,7 +77,24 @@ const useFetch = () => {
         setFoods([...preWorkoutFoods, ...afterWorkoutFoods, ...preWorkoutFoods, ...afterWorkoutFoods]);
     }, []);
 
+    
+    // useEffect(() => {
+
+    //     fetch('http://127.0.0.1:8000/api/meals')
+    //         .then(res => res.json())
+    //         .then(data => {
+    //             setFoods(data);
+    //             console.log(data)
+    //         })
+    //         .catch(err => {
+    //             console.log(err);
+    //         });
+    
+    // }, []);
+        
     return [foods, setFoods];
 };
 
 export default useFetch;
+
+

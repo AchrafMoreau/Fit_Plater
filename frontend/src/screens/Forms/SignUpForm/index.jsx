@@ -36,7 +36,7 @@ export default function() {
     
     dispatch(registerUser(formData))
     if(success){
-      navigate("/sign-in")
+      navigate("/sign-in", { replace: true })
     }
   };
 

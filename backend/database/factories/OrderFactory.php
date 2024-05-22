@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Customer;
 use App\Models\Meal;
+use App\Models\Order;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -11,6 +12,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class OrderFactory extends Factory
 {
+    protected $model = Order::class;
     /**
      * Define the model's default state.
      *
@@ -19,10 +21,10 @@ class OrderFactory extends Factory
     public function definition()
     {
         return [
-            "customer_id" => Customer::inRandomOrder()->first()->id,
-            "meal_id" => Meal::inRandomOrder()->first()->id,
-            "total_price" => $this->faker->numberBetween(0, 10000),
-            "confirmed" => $this->faker->boolean()
+            'customer_id' => Customer::inRandomOrder()->first()->id,
+            'meal_id' => Meal::inRandomOrder()->first()->id,
+            'total_price' => $this->faker->numberBetween(0, 10000),
+            'confirmed' => $this->faker->boolean(),
         ];
     }
 }

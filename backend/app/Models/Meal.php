@@ -4,15 +4,25 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\meals_element;
 
 class Meal extends Model
 {
     use HasFactory;
-    protected $fillable = ["total_calories","total_carbohydate","total_fat","total_protein","meal_price"];
-    public function mealElement()
-    {
-        return $this->belongsTo(meals_element::class, 'meal_id');
-    }
+    
+    protected $fillable = [
+        'category',
+        "image",
+        'calories',
+        'carbs',
+        'fat',
+        'protein',
+        'price'
+    ];
 
+    public function elements()
+    {
+        return $this->belongsToMany(Element::class, 'meals_elements')
+                    ->withPivot('size')
+                    ->withTimestamps();
+    }
 }

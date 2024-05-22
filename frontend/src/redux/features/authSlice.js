@@ -36,6 +36,7 @@ const authSlice = createSlice({
             .addCase(registerUser.pending, (state)=>{
                 state.loading = true
                 state.error = null  
+                state.success = false
             })
             .addCase(registerUser.fulfilled, (state, { payload })=>{
                 state.loading = false
@@ -45,6 +46,7 @@ const authSlice = createSlice({
             })
             .addCase(registerUser.rejected, (state, { payload })=>{
                 state.loading = false;
+                state.success = false
                 state.error = payload
             })
     }

@@ -24,7 +24,7 @@ const cartSlice = createSlice({
       } else {
         state.cartList.push({ ...action.payload, quantity: 1 });
       }
-      state.totalPrice += price;
+      state.totalPrice += +price;
       saveCartToStorage(state);
     },
     removeFromCart: (state, action) => {
@@ -38,7 +38,7 @@ const cartSlice = createSlice({
         } else {
           state.cartList.splice(existingCartItemIndex, 1);
         }
-        state.totalPrice -= price;
+        state.totalPrice -= +price;
         saveCartToStorage(state);
       }
     },
@@ -57,16 +57,16 @@ const cartSlice = createSlice({
       existingCartItem.quantity = newQty;
 
       if (diff > 0) {
-        existingCartItem.price += product.price * diff;
-        state.totalPrice += product.price * diff;
+        existingCartItem.price += +product.price * +diff;
+        state.totalPrice += +product.price * +diff;
       } else {
         const remainingQty = existingCartItem.quantity + diff;
         if (remainingQty < 1) {
           alert('The product cannot have a negative quantity');
           return;
         }
-        existingCartItem.price -= product.price * Math.abs(diff);
-        state.totalPrice -= product.price * Math.abs(diff);
+        existingCartItem.price -= +product.price * Math.abs(diff);
+        state.totalPrice -= +product.price * Math.abs(diff);
         if (remainingQty === 0) {
           state.cartList = state.cartList.filter(item => item.id !== id);
         }

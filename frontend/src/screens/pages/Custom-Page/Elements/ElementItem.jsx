@@ -20,7 +20,7 @@ const ElementItem = ({ elem, setShowMenu }) => {
       <div className="card-body text-myBlue">
         <h2 className="card-title text-sm lg:text-base">{elem.name}</h2>
         <p className="text-xs lg:text-sm">
-          {elem.calories} calories, {elem.protein} g protein, {elem.fat} g fat
+          {elem.calories} calories, {elem.protein} g protein, {elem.carbs}g carbs, {elem.fat} g fat
         </p>
         <div
           onClick={(e) => e.stopPropagation()}

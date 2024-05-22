@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BiSolidCartAdd } from "react-icons/bi";
 import { addToCart } from "../../../../redux/CartSlice";
 import { useDispatch } from "react-redux";
 import { motion } from "framer-motion";
 import { MdFileDownloadDone } from "react-icons/md";
-
 
 const FoodItem = ({ item, setSelectedItem, setShowDetail }) => {
   const dispatch = useDispatch();
@@ -29,10 +28,14 @@ const FoodItem = ({ item, setSelectedItem, setShowDetail }) => {
       className="card card-compact cursor-pointer w-64 lg:w-80 bg-white hover:shadow-lg shadow-md"
     >
       <figure>
-        <img className="hover:scale-105 duration-300" src={item.image} alt={item.category} />
+        <img
+          className="hover:scale-105 duration-300"
+          src={item.image}
+          alt={item.category}
+        />
       </figure>
       <div className="card-body text-myBlue">
-        <h2 className="card-title ">{item.category}</h2>
+        <h2 className="card-title">{item.category}</h2>
         <p>
           {item.calories} calories, {item.protein} g protein, {item.carbs} g carbs, {item.fat} g fat
         </p>
@@ -45,7 +48,7 @@ const FoodItem = ({ item, setSelectedItem, setShowDetail }) => {
               setSelectedItem(item);
               setShowDetail(true);
             }}
-            className=" text-myOrange font-Poppins text-sm font-semibold underline"
+            className="text-myOrange font-Poppins text-sm font-semibold underline"
           >
             View Detail
           </p>
@@ -69,7 +72,7 @@ const FoodItem = ({ item, setSelectedItem, setShowDetail }) => {
           <div className="p-2 w-64 py-5 bg-myOrange items-center text-white leading-none rounded-full flex justify-between " role="alert">
             <MdFileDownloadDone className="ml-2 mr-2" size={20} />
             <span className="font-semibol font-Poppins mr-2 text-left flex-auto ">Added to cart successfully!</span>
-          </div>
+          </div>  
         </motion.div>
       )}
     </div>
