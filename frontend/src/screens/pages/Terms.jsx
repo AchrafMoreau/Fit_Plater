@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
 import INFO from "../../data/user";
 import SEO from "../../data/seo";
+import { Helmet } from "react-helmet";
 
 const Terms = () => {
 
   const logo = <span className="font-Outfit uppercase text-myBlue">
-                <span className="text-myOrange">Fit </span>
+                  <span className="text-myOrange">Fit </span>
                   Platter
                 </span>
 
@@ -14,11 +15,11 @@ const Terms = () => {
   return (
 
     <>
-      <head>
+      <Helmet>
         <title>{`Terms | ${INFO.main.title}`}</title>
-        <meta name="description" content={SEO[4].description} />
-        <meta name="keywords" content={SEO[4].keywords.join(", ")} />
-      </head>
+        <meta name="description" content={SEO[5].description} />
+        <meta name="keywords" content={SEO[5].keywords.join(", ")} />
+      </Helmet>
 
       <div className="min-h-screen flex items-center justify-center bg-gray-100">
         <div className="w-full max-w-2xl p-8 bg-white shadow-md rounded-md">

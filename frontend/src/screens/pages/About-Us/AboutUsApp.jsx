@@ -5,6 +5,7 @@ import ServicesInfo from "./ServicesInfo";
 import img from '../../../images/about.webp'
 import INFO from "../../../data/user";
 import SEO from "../../../data/seo";
+import { Helmet } from "react-helmet";
 
 const AboutUsApp = () => {
 
@@ -13,11 +14,11 @@ const AboutUsApp = () => {
     
     return ( 
         <>
-            <>
+            <Helmet>
                 <title>{`${title} | ${INFO.main.title}`}</title>
                 <meta name="description" content={SEO[3].description} />
                 <meta name="keywords" content={SEO[3].keywords.join(", ")} />
-            </>
+            </Helmet>
 
             {/* components.. */}
             <HeroCopy title={title} imgSrc={img} />
