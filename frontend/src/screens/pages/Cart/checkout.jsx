@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import orderImg from '../../../images/order.jpg';
+import orderImg from '../../../images/order.webp';
 
 const Checkout = ({ isCheckout, setIsCheckout, cartList, cartTotalPrice }) => {
   return (
