@@ -6,12 +6,17 @@ import { useSelector } from 'react-redux';
 
 const Navbar = ({ setShowCart }) => {
   const [isSticky, setIsSticky] = useState(false);
+  const active = 'bg-myOrange md:bg-transparent text-white block pl-3 pr-4 py-2 md:text-myOrange md:p-0 rounded';
+  const path = location.pathname;
+
   const [isOpen, setIsOpen] = useState(false);
   const { cartList } = useSelector((state) => state.Cart);
   const user = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : null;
+
   const navigate = useNavigate();
 
   useEffect(() => {
+    console.log(path)
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
       const stickyThreshold = 50;
@@ -44,7 +49,7 @@ const Navbar = ({ setShowCart }) => {
         } rounded-lg transition-all duration-300 bg-white fixed top-0 z-10 items-center px-[4%] duration-400`}
       >
         <div className="container mx-auto flex flex-wrap items-center justify-between">
-          <Link to="/" className="flex max-w-10">
+          <Link to="/" className="flex w-[115px]">
             {isSticky ? (
               <img src={logo} alt="logo" width={40} height={40} />
             ) : (
@@ -143,7 +148,7 @@ const Navbar = ({ setShowCart }) => {
               <li>
                 <Link
                   to="/home"
-                  className="bg-myOrange md:bg-transparent text-white block pl-3 pr-4 py-2 md:text-myOrange md:p-0 rounded"
+                  className={path == '/home' ? active : 'text-gray-500 hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-myOrange md:p-0 rounded'} 
                   aria-current="page"
                   onClick={() => setIsOpen(false)}
                 >
@@ -153,7 +158,7 @@ const Navbar = ({ setShowCart }) => {
               <li>
                 <Link
                   to="/custom"
-                  className="text-gray-500 hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-myOrange md:p-0"
+                  className={path == '/custom' ? active : 'text-gray-500 hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-myOrange md:p-0 rounded'} 
                   onClick={() => setIsOpen(false)}
                 >
                   Custom
@@ -163,7 +168,7 @@ const Navbar = ({ setShowCart }) => {
               <li>
                 <Link
                   to="/about-us"
-                  className="text-gray-500 hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-myOrange md:p-0"
+                  className={path == '/about-us' ? active : 'text-gray-500 hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-myOrange md:p-0 rounded'} 
                   onClick={() => setIsOpen(false)}
                 >
                   About
@@ -172,7 +177,7 @@ const Navbar = ({ setShowCart }) => {
               <li>
                 <Link
                   to="/contact-us"
-                  className="text-gray-500 hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-myOrange md:p-0"
+                  className={path == '/contact-us' ? active : 'text-gray-500 hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-myOrange md:p-0 rounded'} 
                   onClick={() => setIsOpen(false)}
                 >
                   Contact
@@ -184,7 +189,7 @@ const Navbar = ({ setShowCart }) => {
                   <li>
                     <Link
                       to="/sign-in"
-                      className="block md:hidden text-gray-500 hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 pl-3 pr-4 py-2 md:hover:text-myOrange md:p-0"
+                      className="block md:hidden text-gray-500 hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 pl-3 pr-4 py-2 md:hover:text-myOrange md:p-0 rounded"
                       onClick={() => setIsOpen(false)}
                     >
                       Login
@@ -193,7 +198,7 @@ const Navbar = ({ setShowCart }) => {
                   <li>
                     <Link
                       to="/sign-up"
-                      className="block md:hidden text-gray-500 hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 pl-3 pr-4 py-2 md:hover:text-myOrange md:p-0"
+                      className="block md:hidden text-gray-500 hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 pl-3 pr-4 py-2 md:hover:text-myOrange md:p-0 rounded"
                       onClick={() => setIsOpen(false)}
                     >
                       Sign-Up
@@ -208,7 +213,7 @@ const Navbar = ({ setShowCart }) => {
                       handleLogout();
                       setIsOpen(false);
                     }}
-                    className="block md:hidden text-gray-500 hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 pl-3 pr-4 py-2 md:hover:text-myOrange md:p-0 w-full text-left"
+                    className="block md:hidden text-gray-500 hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 pl-3 pr-4 py-2 md:hover:text-myOrange md:p-0 w-full text-left rounded"
                   >
                     Logout
                   </button>
