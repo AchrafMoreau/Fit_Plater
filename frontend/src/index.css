@@ -13,13 +13,18 @@
     }
 }
 
+.btn-secondary {
+  @apply px-4 py-2 uppercase font-semibold text-white bg-myOrange hover:shadow-md ;
+}
 
 .btn-primary-sm {
   @apply px-3 py-1 rounded-md text-sm uppercase font-semibold text-white bg-myOrange hover:shadow-md ;
 }
+
 .btn-secondary-sm {
   @apply px-3 py-1 rounded-md text-sm uppercase font-semibold text-white bg-myOrange hover:shadow-md ;
 }
+
 .btn-white-sm {
   @apply px-3 py-1 rounded-md text-sm uppercase font-semibold text-black  bg-white hover:shadow-md ;
 }

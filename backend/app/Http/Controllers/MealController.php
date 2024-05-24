@@ -17,11 +17,11 @@ class MealController extends Controller
     
     public function index(Request $request)
     {
-        // return  meals_element::with(['mealId', 'elementId'])->get();
-        $meals = Meal::all();
-        return $meals;
-        
-    }
+        // Eager load the elements relationship
+        $meals = Meal::with('elements')->get();
+        return response()->json($meals);
+
+    } 
 
     /**
      * Show the form for creating a new resource.

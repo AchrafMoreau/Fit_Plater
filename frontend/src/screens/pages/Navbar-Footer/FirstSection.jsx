@@ -12,7 +12,7 @@ const HeroCopy = ({title, imgSrc}) => {
           animate={{ opacity : 100 }} 
           initial={{ opacity : 0 }} 
           transition={{ delay: 0.1 }}
-          className="w-full h-[250px] bg-cover bg-center items-center md:rounded-lg"
+          className="w-full md:w-[95%]  h-[250px] bg-cover bg-center items-center md:rounded-lg"
           style={{
               backgroundImage:`url(${imgSrc})`,
               objectFit: 'cover',

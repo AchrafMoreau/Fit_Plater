@@ -8,6 +8,9 @@ body{
 /* width */
 ::-webkit-scrollbar {
     width: 5px;
+    position: fixed;
+    top: 0;
+    right: 0;
 }
  
 /* Track */

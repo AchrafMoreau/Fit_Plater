@@ -37,16 +37,16 @@ const FoodDetail = ({ showDetail, setShowDetail, item }) => {
           </p>
         </div>
 
-        {/* <div className="px-6 pt-2 pb-6">
-          {item?.ingredients.map((ing, index) => (
+        <div className="px-6 pt-2 pb-6">
+          {item?.elements.map((ing) => (
             <span
-              key={index}
+              key={ing.id}
               className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
             >
-              {ing}
+              {ing.name + ` (${ing.pivot.size})` }
             </span>
           ))}
-        </div> */}
+        </div>
       </motion.div>
     </div>
   );

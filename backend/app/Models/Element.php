@@ -22,8 +22,7 @@ class Element extends Model
     public function meals()
     {
         return $this->belongsToMany(Meal::class, 'meals_elements')
-                    ->withPivot('size')
-                    ->withTimestamps();
+                    ->withPivot('size');
     }
 
 }

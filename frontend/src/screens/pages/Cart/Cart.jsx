@@ -9,18 +9,16 @@ import { Link } from "react-router-dom";
 const Cart = ({ showCart, setShowCart }) => {
   const { cartList, totalPrice } = useSelector((state) => state.Cart);
 
-  
-
   return (
     <div
-      className={`fixed inset-0 z-50 ${showCart ? "bg-black bg-opacity-50" : "hidden"}`}
+      className={`fixed inset-0 z-50 transition-opacity duration-300 ${showCart ? "bg-black bg-opacity-50" : "opacity-0 pointer-events-none"}`}
       onClick={() => setShowCart(false)}
     >
       <motion.div
         initial={{ opacity: 0, x: 200 }}
-        animate={{ opacity: 1, x: 0 }}
-        exit={{ opacity: 0, x: 200 }}
-        className="max-w-[400px] w-full h-full bg-white fixed right-0 top-0 p-6 transform"
+        animate={{ opacity: showCart ? 1 : 0, x: showCart ? 0 : 200 }}
+        transition={{ duration: 0.2 }}
+        className="max-w-[400px] w-full h-full bg-white fixed right-0 top-0 p-6 shadow-lg transform"
         onClick={(e) => e.stopPropagation()}
       >
         <FaTimes
@@ -40,7 +38,7 @@ const Cart = ({ showCart, setShowCart }) => {
             ))
           ) : (
             <div className="flex flex-col items-center justify-center gap-6">
-              <img src={EmptyCart} className="w-300" alt="" />
+              <img src={EmptyCart} className="w-300" alt="Empty Cart" />
               <p className="text-xl text-textColor font-semibold">
                 Add some items to your cart
               </p>

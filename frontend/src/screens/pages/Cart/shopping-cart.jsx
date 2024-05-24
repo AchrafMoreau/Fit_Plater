@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { removeFromCart, addToCart } from "../../../redux/CartSlice";
 import EmptyCart from "../../../images/emptyCart.svg";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import Checkout from "./checkout";
 
 function ShoppingCart() {
   const { cartList, totalPrice : cartTotalPrice } = useSelector((state) => state.Cart);
   // const { cartMenu, totalPrice: menuTotalPrice } = useSelector((state) => state.ElemMenu);
+  const [isCheckout, setIsCheckout] = useState(false)
   const dispatch = useDispatch();
 
   const handleRemoveFromCart = (meal) => {
@@ -35,7 +37,7 @@ function ShoppingCart() {
   }
 
   return (
-      <div className="sm:flex h-screen pt-2 px-4 w-full">
+      <div className="sm:flex h-screen w-full">
         <div className="w-full sm:w-3/4 bg-white px-10 py-10 sm:h-screen overflow-auto ">
           <div className="flex justify-between border-b pb-8 ">
             <h1 className="font-Outfit text-2xl">Shopping Cart</h1>
@@ -90,7 +92,7 @@ function ShoppingCart() {
           </Link>
         </div>
 
-        <div id="summary" className="w-full sm:w-1/4 md:w-1/2 px-8 py-10">
+        <div id="summary" className="w-full sm:w-1/4 md:w-1/2 px-8 py-10 bg-[#f9fafb]">
           <h1 className="font-Outfit text-2xl border-b pb-8">Order Summary</h1>
           <div className="flex justify-between mt-10 mb-5">
             <span className="font-Outfit text-sm uppercase">{cartList.length} Items</span>
@@ -107,11 +109,15 @@ function ShoppingCart() {
               <span>Total cost</span>
               <span>{(cartTotalPrice + 10).toFixed(2)} MAD</span>
             </div>
-            <button className="bg-myBlue font-Outfit hover:bg-myOrange py-3 text-sm text-white uppercase w-full duration-150">
+            <button 
+              className="bg-myBlue font-Outfit hover:bg-myOrange py-3 text-sm text-white uppercase w-full duration-150"
+              onClick={()=> setIsCheckout(true)}              
+              >
               Checkout
             </button>
           </div>
         </div>
+        <Checkout isCheckout={isCheckout} setIsCheckout={setIsCheckout} cartList={cartList} cartTotalPrice={cartTotalPrice} />
       </div>
   );
 }

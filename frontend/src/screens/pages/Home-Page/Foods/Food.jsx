@@ -15,6 +15,7 @@ const Food = () => {
             .then(data => {
                 setFoods(data);
                 setLoading(false);
+                console.log(data)
             })
             .catch(err => {
                 console.log(err);

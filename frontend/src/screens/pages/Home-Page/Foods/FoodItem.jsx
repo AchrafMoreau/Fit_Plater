@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { motion } from "framer-motion";
 import { MdFileDownloadDone } from "react-icons/md";
 
+
 const FoodItem = ({ item, setSelectedItem, setShowDetail }) => {
   const dispatch = useDispatch();
   const [showNotification, setShowNotification] = useState(false);
@@ -25,7 +26,7 @@ const FoodItem = ({ item, setSelectedItem, setShowDetail }) => {
         setSelectedItem(item);
         setShowDetail(true);
       }}
-      className="card card-compact cursor-pointer w-64 lg:w-80 bg-white hover:shadow-lg shadow-md"
+      className="card card-compact cursor-pointer h-80 lg:h-96 w-64 lg:w-80 bg-white hover:shadow-lg shadow-md"
     >
       <figure>
         <img

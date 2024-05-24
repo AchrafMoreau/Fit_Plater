@@ -22,7 +22,7 @@ const HeroSection = () => {
         >
           <h1 className="md:text-5xl text-3xl font-medium mb-6 text-headersBlue">Embrace a healthier lifestyle</h1>
           <p className="md:text-xl text-l mb-12 text-myBlue"> Uplifting Lives Through the Path of Wellness and Vitality.</p>
-          <Link to="/sign-in" className="inline-flex items-center bg-myOrange font-Poppins font-semibold text-white py-3 px-8 lg:py-4 lg:px-12 rounded-lg hover:bg-orange-600 duration-100">
+          <Link to="/home" className="inline-flex items-center bg-myOrange font-Poppins font-semibold text-white py-3 px-8 lg:py-4 lg:px-12 rounded-lg hover:bg-orange-600 duration-100">
             <span className="mr-3">Get Started</span>
             <FaCircleRight />
           </Link>
