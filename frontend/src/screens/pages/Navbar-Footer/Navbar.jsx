@@ -109,7 +109,7 @@ const Navbar = ({ setShowCart }) => {
               onClick={() => setIsOpen(!isOpen)}
               className={`${
                 isOpen ? 'rotate-90' : 'rotate-0'
-              } md:hidden transition-all duration-400 text-gray-400 hover:text-myBlue rounded-lg inline-flex items-center justify-center`}
+              } md:hidden transition-all duration-400 text-gray-400 hover:text-myBlue rounded-lg inline-flex items-center justify-center mx-3`}
               aria-controls="mobile-menu-3"
               aria-expanded={isOpen}
             >
