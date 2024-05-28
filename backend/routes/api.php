@@ -7,6 +7,8 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\MealController;
 use App\Http\Controllers\MealsElementController;
+use App\Http\Controllers\GoalController;
+use App\Http\Controllers\SmallTableController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,13 +40,18 @@ Route::post("login", [CustomerController::class, 'login']);
 
 Route::resource('orders', OrderController::class)->except(['create', 'edit']); // Order routes
 
+// smallTable
+Route::get('smallTable', [SmallTableController::class, 'index']);
+
 // Protected Routes
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::post("elements", [ElementController::class, 'store']);
     Route::put("elements/{element}", [ElementController::class, 'update']);
     Route::delete("elements/{element}", [ElementController::class, 'destroy']);
     
-    
+    // Goals Routes
+    Route::resource("goal", GoalController::class);
+
     Route::get("reco", [OrderController::class, 'reco']); // Recommendation route
 });
 

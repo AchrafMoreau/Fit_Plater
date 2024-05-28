@@ -70,7 +70,7 @@ export default function Step1({ formData, handleInputChange, errors }) {
         {errors.gender && <p className="mt-1 text-xs text-red-500">{errors.gender}</p>}
       </div>
       <div className="mb-2">
-        <label htmlFor="height" className="block mb-2 text-sm font-medium text-gray-700">Height(Cm)</label>
+        <label htmlFor="height" className="block mb-2 text-sm font-medium text-gray-700">Height(m)</label>
         <input
           type="number"
           id="height"

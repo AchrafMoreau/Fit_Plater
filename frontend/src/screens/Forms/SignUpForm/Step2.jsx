@@ -1,5 +1,23 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
+
 // Step2.js
 export default function Step2({ formData, handleInputChange, errors }) {
+
+  const [smallTables, setSmallTables] = useState({
+    goals: [],
+    types: [],
+    productivity: [],
+    allergy: []
+  });
+
+
+  useEffect(()=>{
+    axios.get(`${import.meta.env.VITE_APP_BACKEND_HOST}/api/smallTable`)
+      .then(({data})=> setSmallTables(data))
+      .catch(err => console.log(err))
+  },[])
+
   return (
     <>
       <div className="mb-2">
@@ -11,38 +29,37 @@ export default function Step2({ formData, handleInputChange, errors }) {
           onChange={handleInputChange}
           className="w-full px-3 py-2 bg-InputBg border border-InputBg rounded-md outline-none focus:border-[#FC6212]"
         >
-          <option value="">Select activity level</option>
-          <option value="low">Low</option>
-          <option value="medium">Medium</option>
-          <option value="high">High</option>
+          {smallTables.productivity.map((elm)=> <option key={elm.id} value={elm.id}>{elm.productivity}</option>)}
         </select>
       </div>
       <div className="mb-2">
         <label htmlFor="allergies" className="block mb-2 text-sm font-medium text-gray-700">Allergies</label>
-        <input
+        <select
           type="text"
           id="allergies"
           name="allergies"
           value={formData.allergies}
           onChange={handleInputChange}
-          placeholder="Enter allergies"
           className="w-full px-3 py-2 bg-InputBg border border-InputBg rounded-md outline-none focus:border-[#FC6212]"
-        />
+        >
+          {smallTables.allergy.map((elm)=> <option key={elm.id} value={elm.id}>{elm.allergy}</option>)}
+        </select>
       </div>
       <div className="mb-2">
         <label htmlFor="type" className="block mb-2 text-sm font-medium text-gray-700">Sport Type</label>
-        <input
+        <select
           type="text"
           id="type"
           name="type"
           value={formData.type}
           onChange={handleInputChange}
-          placeholder="Enter type of sport you do"
           className="w-full px-3 py-2 bg-InputBg border border-InputBg rounded-md outline-none focus:border-[#FC6212]"
-        />
+        >
+          {smallTables.types.map((elm)=> <option key={elm.id} value={elm.id}>{elm.type}</option>)}
+        </select>
       </div>
       <div className="mb-2">
-        <label htmlFor="musclePercentage" className="block mb-2 text-sm font-medium text-gray-700">Muscle Percentage</label>
+        <label htmlFor="musclePercentage" className="block mb-2 text-sm font-medium text-gray-700">Muscle Percentage %</label>
         <input
           type="number"
           id="musclePercentage"
@@ -54,7 +71,7 @@ export default function Step2({ formData, handleInputChange, errors }) {
         />
       </div>
       <div className="mb-2">
-        <label htmlFor="FatPercentage" className="block mb-2 text-sm font-medium text-gray-700">Fat Percentage</label>
+        <label htmlFor="FatPercentage" className="block mb-2 text-sm font-medium text-gray-700">Fat Percentage %</label>
         <input
           type="number"
           id="FatPercentage"
@@ -74,10 +91,7 @@ export default function Step2({ formData, handleInputChange, errors }) {
           onChange={handleInputChange}
           className="w-full px-3 py-2 bg-InputBg border border-InputBg rounded-md outline-none focus:border-[#FC6212]"
         >
-          <option value="">Select fitness goal</option>
-          <option value="weight_loss">Weight Loss</option>
-          <option value="muscle_gain">Muscle Gain</option>
-          <option value="maintain">Maintain</option>
+            {smallTables.goals.map((elm)=> <option key={elm.id} value={elm.id}>{elm.goal}</option>)}
         </select>
       </div>
       <div className="mb-2">
