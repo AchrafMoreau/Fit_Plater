@@ -9,7 +9,6 @@ import Asside from './Asside'
 const ProfileApp = () => {
     
     const Customer = JSON.parse(localStorage.getItem('user'));
-    console.log(Customer)
     const title = `Hello, ${Customer.first_name || 'User'}!`;
     
     

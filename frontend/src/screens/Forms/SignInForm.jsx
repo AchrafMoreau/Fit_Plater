@@ -10,7 +10,6 @@ import { Helmet } from "react-helmet";
 
 // SignInForm component
 export default function SignInForm() {
-  const title = 'Sign-in';
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -66,7 +65,7 @@ export default function SignInForm() {
   return (
     <>
       <Helmet>
-        <title>{`${title} | ${INFO.main.title}`}</title>
+        <title>{`${SEO[6].page} | ${INFO.main.title}`}</title>
         <meta name="description" content={SEO[6].description} />
         <meta name="keywords" content={SEO[6].keywords.join(", ")} />
       </Helmet>
