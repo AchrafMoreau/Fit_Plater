@@ -57,7 +57,7 @@ export default function SignInForm() {
   useEffect(() => {
     // Check if the user is already logged in
     const userFromLocalStorage = JSON.parse(localStorage.getItem('user'));
-    if (userFromLocalStorage || success) {
+    if (userFromLocalStorage) {
       navigate('/home', { replace: true });
     }
   }, [success, navigate]);

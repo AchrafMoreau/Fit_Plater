@@ -23,11 +23,11 @@ export default function SignUpForm() {
     weight: '',
     phone: '',
     productivity_id: '',
-    allergy_id: '',
+    allergy_id: 0,
     type_id: '',
     MusclePercentage: '',
     FatPercentage: '',
-    goal_id: '',
+    goal_id: 0,
     password: '',
     password_confirmation: '',
   });
@@ -41,6 +41,7 @@ export default function SignUpForm() {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+    console.log(typeof(value))
     setFormData({ ...formData, [name]: value });
     setErrors({ ...errors, [name]: '' });
   };
@@ -67,8 +68,8 @@ export default function SignUpForm() {
   };
 
   const handleNext = () => {
+    setStep(2);
     if (step === 1 && validateStep1()) {
-      setStep(2);
     }
   };
 
@@ -82,14 +83,22 @@ export default function SignUpForm() {
       setErrors({ password_confirmation: 'Passwords do not match' });
       return;
     }
+    formData.allergy_id = parseInt(formData.allergy_id);
+    formData.goal_id = parseInt(formData.goal_id);
+    formData.productivity_id = parseInt(formData.productivity_id);
+    formData.type_id = parseInt(formData.type_id);
+    // console.log(formData)
     dispatch(registerUser(formData));
-  };
-
-  useEffect(() => {
-    if (success) {
+    if(success){
       navigate("/sign-in");
     }
-  }, [success]);
+  };
+
+  // useEffect(() => {
+  //   if (success) {
+  //     navigate("/sign-in");
+  //   }
+  // }, [success]);
 
   return (
     <>
