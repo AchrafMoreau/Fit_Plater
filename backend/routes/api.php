@@ -37,6 +37,9 @@ Route::post('/meals_elements', [MealsElementController::class, 'store']);
 // Auth Routes
 Route::post("register", [CustomerController::class, 'register']);
 Route::post("login", [CustomerController::class, 'login']);
+// customer routres
+Route::get('customer/{customer_id}', [CustomerController::class, 'getUserData']);
+Route::post('customer/{customer_id}/update', [CustomerController::class, 'update']);
 
 Route::resource('orders', OrderController::class)->except(['create', 'edit']); // Order routes
 
@@ -53,6 +56,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::resource("goal", GoalController::class);
 
     Route::get("reco", [OrderController::class, 'reco']); // Recommendation route
+   
+
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
