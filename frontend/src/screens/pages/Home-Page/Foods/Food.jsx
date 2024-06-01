@@ -10,7 +10,7 @@ const Food = () => {
     const [foods, setFoods] = useState([]);
 
     useEffect( () => {
-        fetch('http://127.0.0.1:8000/api/meals')
+        fetch(`${import.meta.env.VITE_APP_BACKEND_HOST}/api/meals`)
             .then(res => res.json())
             .then(data => {
                 setFoods(data);
@@ -63,7 +63,7 @@ const Food = () => {
             </div>
 
             {/* All foods */}
-            <div className="gap-10 mt-12 flex justify-center flex-row mx-auto flex-wrap">
+            <div className="gap-3 md:gap-8 mt-12 flex justify-center mx-auto flex-wrap">
                 {loading ? (
                     <Skeleton />
                 ) : (

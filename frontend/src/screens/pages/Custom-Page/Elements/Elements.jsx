@@ -11,7 +11,7 @@ const Elements = () => {
 
 
     useEffect(() => {
-        fetch('http://127.0.0.1:8000/api/elements')
+        fetch(`${import.meta.env.VITE_APP_BACKEND_HOST}/api/elements`)
             .then(res => res.json())
             .then(data => setElements(data))
             .catch(err => console.log(err));

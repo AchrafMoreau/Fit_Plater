@@ -9,7 +9,7 @@ use App\Models\Type;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class SmallTabels extends Seeder
+class SmallTables extends Seeder
 {
     /**
      * Run the database seeds.
