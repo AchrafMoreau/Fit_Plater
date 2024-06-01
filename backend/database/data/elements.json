@@ -148,5 +148,35 @@
         "fat": 65,
         "measurementUnit": "Gram",
         "price": 2.5
+    },
+    {
+        "name": "Tuna",
+        "image": "https://img.freepik.com/free-photo/fresh-walnut-with-leaves_144627-16008.jpg?t=st=1717197669~exp=1717201269~hmac=2498090f2b546bd22d287d90b3d86a8e321fafe6232f5c29d1e701e270f74e52&w=900",
+        "calories": 116,
+        "protein": 26.4,
+        "carbs": 0,
+        "fat": 0.8,
+        "measurementUnit": "Gram",
+        "price": 2.5
+    },
+    {
+        "name": "Carrots",
+        "image": "https://img.freepik.com/free-photo/fresh-walnut-with-leaves_144627-16008.jpg?t=st=1717197669~exp=1717201269~hmac=2498090f2b546bd22d287d90b3d86a8e321fafe6232f5c29d1e701e270f74e52&w=900",
+        "calories": 41,
+        "protein": 0.9 ,
+        "carbs": 9.6 ,
+        "fat": 0.2 ,
+        "measurementUnit": "Gram",
+        "price": 2.5
+    },
+    {
+        "name": "Milk",
+        "image": "https://img.freepik.com/free-photo/fresh-walnut-with-leaves_144627-16008.jpg?t=st=1717197669~exp=1717201269~hmac=2498090f2b546bd22d287d90b3d86a8e321fafe6232f5c29d1e701e270f74e52&w=900",
+        "calories": 61 ,
+        "protein": 3.2 ,
+        "carbs": 4.8  ,
+        "fat": 3.3 ,
+        "measurementUnit": "Liter",
+        "price": 2.5
     }
 ]

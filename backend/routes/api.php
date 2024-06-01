@@ -26,6 +26,9 @@ Route::get("elements", [ElementController::class, 'index']);
 Route::get("elements/{element}", [ElementController::class, 'show']);
 Route::get('elements/search/{name}', [ElementController::class, 'search']);
 
+// this routes should be protected show to admin only
+Route::get("/customer", [CustomerController::class, 'index']);
+
 // Meals Routes
 Route::get("meals", [MealController::class, 'index'])->name('meals.index');
 Route::post("meals", [MealController::class, 'store'])->name('meals.store');
@@ -56,8 +59,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::resource("goal", GoalController::class);
 
     Route::get("reco/{id}", [MealController::class, 'reco']); // Recommendation route
-   
-
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
