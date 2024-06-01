@@ -18,6 +18,9 @@ import PrivateRoute from './Outil/PrivateRoutes';
 import Terms from './screens/pages/Terms';
 import ShoppingCart from './screens/pages/Cart/shopping-cart';
 import ProfileApp from './screens/pages/Profile/ProfileApp';
+import { Dashboard } from './screens/pages/dashboard/dashboard';
+import { DashboardLayout } from './screens/pages/dashboard/dashboardLayout';
+import { Customer } from './screens/pages/dashboard/customer';
 
 function App() {
   const [showCart, setShowCart] = useState(false);
@@ -53,6 +56,15 @@ function App() {
           <Routes>
             <Route index element={<HeroApp />} />
             {/* Use PrivateRoute for private routes */}
+            <Route path='/dashboard/*' element={
+                <DashboardLayout>
+                  <Routes>
+                    <Route path="/" element={<Dashboard />} />
+                    <Route path="/customer" element={<Customer />} />
+                    {/* <Route path="/page2" element={<Page2 />} /> */}
+                  </Routes>
+                </DashboardLayout>
+            } />
             <Route path="/profile" element={
               <PrivateRoute>
                 <ProfileApp />
