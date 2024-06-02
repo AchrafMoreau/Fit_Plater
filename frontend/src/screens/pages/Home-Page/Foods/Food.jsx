@@ -12,14 +12,12 @@ const Food = () => {
     useEffect( () => {
         fetch(`${import.meta.env.VITE_APP_BACKEND_HOST}/api/meals`)
             .then(res => res.json())
-            .then(data => {
-                setFoods(data);
-                setLoading(false);
-            })
-            .catch(err => {
-                // console.log(err);
-                setLoading(false);
-            });
+            .then(data => setFoods(data))
+            .catch(err => console.log(err));
+
+        setTimeout(() => {
+            setLoading(false);
+        }, 2000);
     }, []);
 
     // Separate state for each section
@@ -64,13 +62,11 @@ const Food = () => {
 
             {/* All foods */}
             <div className="gap-3 md:gap-8 mt-12 flex justify-center mx-auto flex-wrap">
-                {loading ? (
-                    <Skeleton />
-                ) : (
-                    foods.filter((item) => menuTabs[sectionId] === item.category).map((item) => (
-                        <FoodItem key={item.id} item={item} setShowDetail={setShowDetail} setSelectedItem={setSelectedItem} />
-                    ))
-                )}
+                {
+                foods.filter((item) => menuTabs[sectionId] === item.category).map((item) => (
+                    loading ? <Skeleton key={item.id} /> : <FoodItem key={item.id} item={item} setShowDetail={setShowDetail} setSelectedItem={setSelectedItem} />
+                ))
+                }
             </div>
         </>
     );

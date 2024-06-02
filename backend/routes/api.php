@@ -44,7 +44,7 @@ Route::post("login", [CustomerController::class, 'login']);
 Route::get('customer/{customer_id}', [CustomerController::class, 'getUserData']);
 Route::post('customer/{customer_id}/update', [CustomerController::class, 'update']);
 
-Route::resource('orders', OrderController::class)->except(['create', 'edit']); // Order routes
+Route::resource('orders', OrderController::class); // Order routes
 
 // smallTable
 Route::get('smallTable', [SmallTableController::class, 'index']);

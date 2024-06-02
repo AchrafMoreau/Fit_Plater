@@ -21,6 +21,13 @@ import ProfileApp from './screens/pages/Profile/ProfileApp';
 import { Dashboard } from './screens/pages/dashboard/dashboard';
 import { DashboardLayout } from './screens/pages/dashboard/dashboardLayout';
 import { Customer } from './screens/pages/dashboard/customer';
+import Orders from './screens/pages/dashboard/oders';
+import { Meals } from './screens/pages/dashboard/meals';
+import { Elements } from './screens/pages/dashboard/elements';
+import { Types } from './screens/pages/dashboard/types';
+import { Allergies } from './screens/pages/dashboard/allergies';
+import { Productivities } from './screens/pages/dashboard/productivities';
+import { Goals } from './screens/pages/dashboard/goals';
 
 function App() {
   const [showCart, setShowCart] = useState(false);
@@ -61,7 +68,13 @@ function App() {
                   <Routes>
                     <Route path="/" element={<Dashboard />} />
                     <Route path="/customer" element={<Customer />} />
-                    {/* <Route path="/page2" element={<Page2 />} /> */}
+                    <Route path="/orders" element={<Orders />} />
+                    <Route path="/meals" element={<Meals />} />
+                    <Route path="/elements" element={<Elements />} />
+                    <Route path="/types" element={<Types />} />
+                    <Route path="/allergies" element={<Allergies />} />
+                    <Route path="/productivities" element={<Productivities />} />
+                    <Route path="/goals" element={<Goals />} />
                   </Routes>
                 </DashboardLayout>
             } />

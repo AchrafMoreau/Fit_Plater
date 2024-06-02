@@ -30,12 +30,15 @@ export function NavSide() {
   };
  
   return (
-    <Card  className="h-[calc(100vh)] w-full max-w-[15rem] p-4 shadow-xl shadow-blue-gray-900/5">
-      <div className="mb-2 p-4">
-        <Typography variant="h5" color="blue-gray">
-          Fit Plater
-        </Typography>
-      </div>
+    <Card  className="h-[calc(100vh)] w-full max-w-[15rem] p-4 shadow-xl shadow-blue-gray-900/5 ">
+      <Link to={'/'} className="mb-2 p-4">
+        
+        <span className="font-Outfit text-xl uppercase text-myBlue">
+          <span className="text-myOrange">Fit </span>
+          Platter
+        </span>
+      
+      </Link>
       <List>
       <Accordion
           open={open === 2}
@@ -58,30 +61,42 @@ export function NavSide() {
           </ListItem>
           <AccordionBody className="py-1">
             <List className="p-0">
-              <ListItem>
-                <ListItemPrefix>
-                  <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
-                </ListItemPrefix>
-                    <Link to='/dashboard/customer'>Customers</Link>
-              </ListItem>
-              <ListItem>
-                <ListItemPrefix>
-                  <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
-                </ListItemPrefix>
-                    <Link to='/dashboard/order'>Orders</Link>
-              </ListItem>
-              <ListItem>
-                <ListItemPrefix>
-                  <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
-                </ListItemPrefix>
-                    <Link to='/dashboard/meal'>Meals</Link>
-              </ListItem>
-              <ListItem>
-                <ListItemPrefix>
-                  <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
-                </ListItemPrefix>
-                    <Link to='/dashboard/ingredient'>Ingredients</Link>
-              </ListItem>
+              <Link to='/dashboard/customer'>
+                <ListItem>
+                  <ListItemPrefix>
+                    <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
+                  </ListItemPrefix>
+                    Customers
+                </ListItem>
+              </Link>
+              
+              <Link to='/dashboard/orders'>
+                <ListItem>
+                  <ListItemPrefix>
+                    <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
+                  </ListItemPrefix>
+                    Orders
+                </ListItem>
+              </Link>
+
+              <Link to='/dashboard/meals'>
+                <ListItem>
+                  <ListItemPrefix>
+                    <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
+                  </ListItemPrefix>
+                    Meals
+                </ListItem>
+              </Link>
+
+              <Link to='/dashboard/elements'>
+                <ListItem>
+                  <ListItemPrefix>
+                    <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
+                  </ListItemPrefix>
+                    Elements
+                </ListItem>
+              </Link>
+
             </List>
           </AccordionBody>
         </Accordion>
@@ -106,30 +121,42 @@ export function NavSide() {
           </ListItem>
           <AccordionBody className="py-1">
             <List className="p-0">
-            <ListItem>
-                <ListItemPrefix>
-                  <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
-                </ListItemPrefix>
-                    <Link to='/dashboard/type'>Type of Sports</Link>
-              </ListItem>
-              <ListItem>
-                <ListItemPrefix>
-                  <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
-                </ListItemPrefix>
-                    <Link to='/dashboard/allergy'>Allergies</Link>
-              </ListItem>
-              <ListItem>
-                <ListItemPrefix>
-                  <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
-                </ListItemPrefix>
-                    <Link to='/dashboard/productivity'>Productivity</Link>
-              </ListItem>
-              <ListItem>
-                <ListItemPrefix>
-                  <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
-                </ListItemPrefix>
-                    <Link to='/dashboard/goal'>Goals</Link>
-              </ListItem>
+              <Link to='/dashboard/types'>
+                <ListItem>
+                  <ListItemPrefix>
+                    <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
+                  </ListItemPrefix>
+                    Type of Sports
+                </ListItem>
+              </Link>
+              
+              <Link to='/dashboard/allergies'>
+                <ListItem>
+                  <ListItemPrefix>
+                    <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
+                  </ListItemPrefix>
+                    Allergies
+                </ListItem>
+              </Link>
+
+              <Link to='/dashboard/productivities'>
+                <ListItem>
+                  <ListItemPrefix>
+                    <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
+                  </ListItemPrefix>
+                    Productivity
+                </ListItem>
+              </Link>
+
+              <Link to='/dashboard/goals'>
+                <ListItem>
+                  <ListItemPrefix>
+                    <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
+                  </ListItemPrefix>
+                    Goals
+                </ListItem>
+              </Link>
+            
             </List>
           </AccordionBody>
         </Accordion>
@@ -143,12 +170,14 @@ export function NavSide() {
             <Chip value="14" size="sm" variant="ghost" color="blue-gray" className="rounded-full" />
           </ListItemSuffix>
         </ListItem>
-        <ListItem>
-          <ListItemPrefix>
-            <UserCircleIcon className="h-5 w-5" />
-          </ListItemPrefix>
-          Profile
-        </ListItem>
+        <Link to='/profile'>
+          <ListItem>
+            <ListItemPrefix>
+              <UserCircleIcon className="h-5 w-5" />
+            </ListItemPrefix>
+            Profile
+          </ListItem>
+        </Link>
         <ListItem>
           <ListItemPrefix>
             <Cog6ToothIcon className="h-5 w-5" />

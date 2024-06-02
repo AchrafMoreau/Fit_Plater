@@ -16,7 +16,7 @@ export const DashboardLayout = ({children}) =>{
                 <NavSide />
                 <div style={{ display: 'flex', flex: '1 1 auto', flexDirection: 'column' }}>
                     <main>
-                        <div maxWidth="xl" style={{ padding: '64px' }}>
+                        <div maxwidth="xl" style={{ padding: '64px' }}>
                             {children}
                         </div>
                     </main>

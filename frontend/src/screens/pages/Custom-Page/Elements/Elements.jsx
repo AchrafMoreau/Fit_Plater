@@ -5,7 +5,7 @@ import CartMenu from './CartMenu';
 
 
 const Elements = () => {
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
     const [elements, setElements] = useState([])
     const [showMenu, setShowMenu] = useState(false)
 
@@ -16,7 +16,6 @@ const Elements = () => {
             .then(data => setElements(data))
             .catch(err => console.log(err));
     
-        setLoading(true);
         setTimeout(() => {
             setLoading(false);
         }, 2000);
