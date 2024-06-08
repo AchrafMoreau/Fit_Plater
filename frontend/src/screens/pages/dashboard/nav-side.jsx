@@ -30,7 +30,7 @@ export function NavSide() {
   };
  
   return (
-    <Card  className="h-[calc(100vh)] w-full max-w-[15rem] p-4 shadow-xl shadow-blue-gray-900/5 ">
+    <Card  className="h-[calc(100vh)]  w-full max-w-[15rem] p-4 shadow-xl shadow-blue-gray-900/5 ">
       <Link to={'/'} className="mb-2 p-4">
         
         <span className="font-Outfit text-xl uppercase text-myBlue">
@@ -161,15 +161,7 @@ export function NavSide() {
           </AccordionBody>
         </Accordion>
 
-        <ListItem>
-          <ListItemPrefix>
-            <InboxIcon className="h-5 w-5" />
-          </ListItemPrefix>
-          Inbox
-          <ListItemSuffix>
-            <Chip value="14" size="sm" variant="ghost" color="blue-gray" className="rounded-full" />
-          </ListItemSuffix>
-        </ListItem>
+        
         <Link to='/profile'>
           <ListItem>
             <ListItemPrefix>
@@ -178,12 +170,6 @@ export function NavSide() {
             Profile
           </ListItem>
         </Link>
-        <ListItem>
-          <ListItemPrefix>
-            <Cog6ToothIcon className="h-5 w-5" />
-          </ListItemPrefix>
-          Settings
-        </ListItem>
         <ListItem>
           <ListItemPrefix>
             <PowerIcon className="h-5 w-5" />
