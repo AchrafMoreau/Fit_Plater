@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   Card,
   Typography,
@@ -21,10 +21,20 @@ import {
   PowerIcon,
 } from "@heroicons/react/24/solid";
 import { ChevronRightIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
+import { useDispatch } from "react-redux";
+import { logout } from "../../../redux/features/authSlice";
+
  
 export function NavSide() {
   const [open, setOpen] = React.useState(0);
- 
+  const dispatch = useDispatch()
+ const navigate = useNavigate()
+  const handleLogout = () => {
+    dispatch(logout());
+    localStorage.removeItem('user');
+    navigate('/sign-in', { replace: true });
+  };
+
   const handleOpen = (value) => {
     setOpen(open === value ? 0 : value);
   };
@@ -170,7 +180,7 @@ export function NavSide() {
             Profile
           </ListItem>
         </Link>
-        <ListItem>
+        <ListItem onClick={() => handleLogout()}>
           <ListItemPrefix>
             <PowerIcon className="h-5 w-5" />
           </ListItemPrefix>
